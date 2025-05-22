@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" href="forgotpass.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -42,8 +41,10 @@
                 <label for="email">Email address:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-                <div class="captcha-container">
-                    <div class="g-recaptcha" data-sitekey="6LeBHvEqAAAAADLaUP5XvVrd2Hvz-FVG_30KeEkU"></div>
+                <!-- Math Challenge -->
+                <div class="challenge-container">
+                    <label for="email-challenge">Security Question: What is 4 + 6?</label>
+                    <input type="number" id="email-challenge" name="email_challenge" placeholder="Enter your answer" required>
                 </div>
 
                 <button type="button" class="submit-btn" onclick="sendVerificationCode()">Send Verification Code</button>
@@ -112,7 +113,6 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
     <div id="success-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('success-modal')">&times;</span>
@@ -123,7 +123,6 @@
         </div>
     </div>
 
-    <!-- Error Modal -->
     <div id="error-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('error-modal')">&times;</span>
@@ -135,29 +134,24 @@
     </div>
 
     <script>
-        // For demo purposes - simulating known emails
         const knownEmails = [
             "kentlaqui@gmail.com", 
             "holdenkentlaqui@gmail.com", 
             "student@dhvsu.edu.ph"
         ];
         
+        const EMAIL_CHALLENGE_ANSWER = 10; // 4 + 6
+        
         let currentStep = 1;
         let timerInterval;
 
-        // Function to navigate between steps
         function goToStep(step) {
-            // Hide all forms
             document.querySelectorAll('.form-step').forEach(form => {
                 form.classList.remove('active');
             });
-            
-            // Hide all step indicators
             document.querySelectorAll('.step, .step-label').forEach(stepElem => {
                 stepElem.classList.remove('active');
             });
-            
-            // Show the current form
             if (step === 1) {
                 document.getElementById('email-form').classList.add('active');
             } else if (step === 2) {
@@ -166,7 +160,6 @@
                 document.getElementById('password-form').classList.add('active');
             }
             
-            // Update steps indicator
             for (let i = 1; i <= step; i++) {
                 document.getElementById('step' + i).classList.add('active');
                 document.querySelectorAll('.step-label')[i-1].classList.add('active');
@@ -175,34 +168,27 @@
             currentStep = step;
         }
 
-        // Send verification code
         function sendVerificationCode() {
             const email = document.getElementById('email').value;
+            const challengeAnswer = document.getElementById('email-challenge').value;
             
-            // Verify CAPTCHA
-            const captchaResponse = grecaptcha.getResponse();
-            if (!captchaResponse) {
-                showError("Please complete the CAPTCHA verification.");
+            if (parseInt(challengeAnswer) !== EMAIL_CHALLENGE_ANSWER) {
+                showError("Security question answer is incorrect. Please try again.");
                 return;
             }
             
-            // Check if email exists (for demo purposes)
             if (!knownEmails.includes(email)) {
                 showError("Email not found in our records.");
-                grecaptcha.reset();
                 return;
             }
-            
-            // Simulate sending verification code
+        
             setTimeout(() => {
                 goToStep(2);
-                startTimer(5 * 60); // 5 minutes
-                // Focus on first input
+                startTimer(5 * 60);
                 document.querySelector('.verification-input').focus();
             }, 1000);
         }
 
-        // Start countdown timer
         function startTimer(duration) {
             clearInterval(timerInterval);
             
@@ -223,7 +209,6 @@
             }, 1000);
         }
 
-        // Move to next input in verification code
         function moveToNext(field, position) {
             if (field.value.length === field.maxLength) {
                 const nextField = field.nextElementSibling;
@@ -238,23 +223,17 @@
             }
         }
 
-        // Resend verification code
         function resendCode() {
-            // Reset all input fields
             document.querySelectorAll('.verification-input').forEach(input => {
                 input.value = '';
             });
             
-            // Focus on first input
             document.querySelector('.verification-input').focus();
             
-            // Restart timer
             startTimer(5 * 60);
         }
 
-        // Verify code
         function verifyCode() {
-            // Collect all verification digits
             const inputs = document.querySelectorAll('.verification-input');
             let code = '';
             let isComplete = true;
@@ -271,32 +250,27 @@
                 return;
             }
             
-            // For demo purposes, accept any 6-digit code
             if (code.length === 6) {
                 goToStep(3);
-                
-                // Set up password strength meter
+
                 document.getElementById('new-password').addEventListener('input', checkPasswordStrength);
             } else {
                 showError("Invalid verification code. Please try again.");
             }
         }
 
-        // Check password strength
         function checkPasswordStrength() {
             const password = document.getElementById('new-password').value;
             const indicator = document.getElementById('strength-indicator');
             const strengthText = document.getElementById('strength-text');
             
-            // Calculate strength
             let strength = 0;
             
             if (password.length >= 8) strength += 25;
             if (/[A-Z]/.test(password)) strength += 25;
             if (/[0-9]/.test(password)) strength += 25;
             if (/[^A-Za-z0-9]/.test(password)) strength += 25;
-            
-            // Update UI
+
             indicator.style.width = strength + '%';
             
             if (strength <= 25) {
@@ -314,7 +288,6 @@
             }
         }
 
-        // Reset password
         function resetPassword() {
             const newPassword = document.getElementById('new-password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
@@ -334,19 +307,16 @@
                 return;
             }
             
-            // Simulate password reset
             setTimeout(() => {
                 document.getElementById('success-message').textContent = "Your password has been reset successfully.";
                 openModal('success-modal');
             }, 1000);
         }
 
-        // Redirect to login
         function redirectToLogin() {
             window.location.href = "continue.html";
         }
 
-        // Toggle password visibility
         function togglePassword(inputId) {
             const passwordInput = document.getElementById(inputId);
             const eyeIcon = passwordInput.nextElementSibling.querySelector('i');
@@ -362,7 +332,7 @@
             }
         }
 
-        // Modal functions
+    
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
         }
@@ -375,6 +345,22 @@
             document.getElementById('error-message').textContent = message;
             openModal('error-modal');
         }
+
+        function setRandomChallenge() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            const sum = num1 + num2;
+            
+            const challengeLabel = document.querySelector('label[for="email-challenge"]');
+            challengeLabel.textContent = `Security Question: What is ${num1} + ${num2}?`;
+            
+  
+            window.EMAIL_CHALLENGE_ANSWER = sum;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    
+        });
     </script>
 </body>
 </html>
