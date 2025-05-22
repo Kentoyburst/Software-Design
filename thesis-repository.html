@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Repository</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="thesis-repository.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="thesis-repository.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Administrator</span>
+        </div>
+        <a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="thesis-repository.html" class="active"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="review.html"><i class="fas fa-tasks"></i> Review Submissions</a>
+        <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Thesis Repository</h2>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search by title, author, or keywords...">
+                <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-options">
+                <select id="department-filter">
+                    <option value="">All Departments</option>
+                    <option value="computer-engineering">Computer Engineering</option>
+                    <option value="civil-engineering">Civil Engineering</option>
+                    <option value="electrical-engineering">Electrical Engineering</option>
+                    <option value="mechanical-engineering">Mechanical Engineering</option>
+                </select>
+                <select id="year-filter">
+                    <option value="">All Years</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+                <select id="status-filter">
+                    <option value="">All Status</option>
+                    <option value="approved">Approved</option>
+                    <option value="pending">Pending</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+            <button class="add-thesis-btn"><i class="fas fa-plus"></i> Add New Thesis</button>
+        </div>
+
+        <!-- Thesis List -->
+        <div class="thesis-list">
+            <table id="thesis-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Department</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Machine Learning Applications in Healthcare</td>
+                        <td>Juan Dela Cruz, Maria Santos</td>
+                        <td>Computer Engineering</td>
+                        <td>March 15, 2025</td>
+                        <td><span class="status-badge pending">Pending</span></td>
+                        <td class="action-buttons">
+                            <button class="view-btn" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Analysis of Renewable Energy Sources</td>
+                        <td>Roberto Gomez, Ana Reyes</td>
+                        <td>Electrical Engineering</td>
+                        <td>March 10, 2025</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="view-btn" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sustainable Urban Development Strategies</td>
+                        <td>Marco Villanueva, Sofia Cruz</td>
+                        <td>Civil Engineering</td>
+                        <td>March 5, 2025</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="view-btn" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Optimization of HVAC Systems for Energy Efficiency</td>
+                        <td>Gabriel Torres, Isabella Reyes</td>
+                        <td>Mechanical Engineering</td>
+                        <td>February 28, 2025</td>
+                        <td><span class="status-badge rejected">Rejected</span></td>
+                        <td class="action-buttons">
+                            <button class="view-btn" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IoT-Based Smart Agriculture Monitoring System</td>
+                        <td>Diego Mendoza, Camila Lim</td>
+                        <td>Computer Engineering</td>
+                        <td>February 25, 2025</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="view-btn" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="edit-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="download-btn" title="Download"><i class="fas fa-download"></i></button>
+                            <button class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+            <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+            <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+        </div>
+    </div>
+    
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href ="index.html";
+            }
+        }
+
+        // Add event listeners for search, filter, and action buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Implementation would go here in a real application
+            console.log("Thesis repository page loaded");
+        });
+    </script>
+</body>
+</html>

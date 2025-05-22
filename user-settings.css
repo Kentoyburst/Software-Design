@@ -1,0 +1,81 @@
+/* Additional styles for user settings page */
+.settings-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+}
+
+.settings-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-save, 
+.btn-change-password {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-save:hover, 
+.btn-change-password:hover {
+    background: #2980b9;
+}
+
+.preference-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preference-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preference-item input[type="checkbox"] {
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        flex-direction: column;
+    }
+    
+    .settings-section {
+        width: 100%;
+    }
+}

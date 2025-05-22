@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Stats - Computer Engineering Thesis Repository</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="browse-thesis.css">
+    <link rel="stylesheet" href="view-abstract.css">
+    <link rel="stylesheet" href="thesis-components.css">
+    <link rel="stylesheet" href="stats no1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html" class="active"><i class="fas fa-book-open"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Computer Engineering Thesis Repository</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="article-container">
+                <div class="article-header">
+                    <div class="article-type">
+                        <span class="article-badge">Thesis</span>
+                        <span class="article-status">Full-text available</span>
+                    </div>
+                    <h1 id="thesis-title">AUTOMATIC TURN SIGNAL FOR MOTOR VEHICLES USING ROAD NAVIGATION APPLICATION</h1>
+                    <div class="thesis-metadata">
+                        <span id="thesis-date">2023</span> • 
+                        <span id="thesis-publication">The Computer Engineering Department</span> • 
+                        <span id="thesis-pages">184 pages</span>
+                    </div>
+                    <div class="thesis-doi">
+                        <span>DOI: <a href="#" id="thesis-doi-link">10.55549/ceng.1298753</a></span>
+                    </div>
+                    <div class="thesis-license">
+                        License: <a href="#" id="thesis-license-link">CC BY 4.0</a>
+                    </div>
+                </div>
+
+                <div class="authors-list" id="thesis-authors">
+                    <!-- Authors will be dynamically added here -->
+                </div>
+
+                <div class="thesis-tabs">
+                    <a href="no6.html">Overview</a>
+                    <a href="stats no6.html" class="active">Stats</a>
+                    <a href="comments no6.html">Comments</a>
+                    <a href="citation no6.html">Citations</a>
+                    <a href="references no6.html">References</a>
+                </div>
+
+                <div class="stats-container">
+                    <h2>Thesis Statistics</h2>
+                    
+                    <div class="stats-summary">
+                        <div class="stats-card">
+                            <div class="stats-icon"><i class="fas fa-eye"></i></div>
+                            <div class="stats-details">
+                                <h3>3,972</h3>
+                                <p>Total Reads</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <div class="stats-icon"><i class="fas fa-quote-right"></i></div>
+                            <div class="stats-details">
+                                <h3>8</h3>
+                                <p>Citations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <div class="stats-icon"><i class="fas fa-download"></i></div>
+                            <div class="stats-details">
+                                <h3>512</h3>
+                                <p>Downloads</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-card">
+                            <div class="stats-icon"><i class="fas fa-thumbs-up"></i></div>
+                            <div class="stats-details">
+                                <h3>5</h3>
+                                <p>Recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-graphs">
+                        <div class="stats-graph-container">
+                            <h3>Reads Over Time</h3>
+                            <div class="stats-time-filter">
+                                <button class="time-filter-btn active" data-period="week">Week</button>
+                                <button class="time-filter-btn" data-period="month">Month</button>
+                                <button class="time-filter-btn" data-period="year">Year</button>
+                                <button class="time-filter-btn" data-period="all">All Time</button>
+                            </div>
+                            <div class="stats-graph" id="reads-graph">
+                                <!-- This would be filled with a chart via JavaScript -->
+                                <div class="placeholder-graph">
+                                    <div class="graph-y-axis">
+                                        <span>200</span>
+                                        <span>150</span>
+                                        <span>100</span>
+                                        <span>50</span>
+                                        <span>0</span>
+                                    </div>
+                                    <div class="graph-bars">
+                                        <div class="graph-bar" style="height: 45%;" title="Apr 3: 90 reads">
+                                            <span class="graph-label">Apr 3</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 60%;" title="Apr 4: 120 reads">
+                                            <span class="graph-label">Apr 4</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 75%;" title="Apr 5: 150 reads">
+                                            <span class="graph-label">Apr 5</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 85%;" title="Apr 6: 170 reads">
+                                            <span class="graph-label">Apr 6</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 50%;" title="Apr 7: 100 reads">
+                                            <span class="graph-label">Apr 7</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 65%;" title="Apr 8: 130 reads">
+                                            <span class="graph-label">Apr 8</span>
+                                        </div>
+                                        <div class="graph-bar" style="height: 55%;" title="Apr 9: 110 reads">
+                                            <span class="graph-label">Apr 9</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stats-graph-container">
+                            <h3>Geographic Distribution</h3>
+                            <div class="stats-map" id="geo-distribution-map">
+                                <!-- This would be filled with a map visualization via JavaScript -->
+                                <div class="placeholder-map">
+                                    <div class="map-region" style="width: 70%;">
+                                        <span class="region-name">Philippines</span>
+                                        <span class="region-percent">70%</span>
+                                    </div>
+                                    <div class="map-region" style="width: 10%;">
+                                        <span class="region-name">United States</span>
+                                        <span class="region-percent">10%</span>
+                                    </div>
+                                    <div class="map-region" style="width: 5%;">
+                                        <span class="region-name">Japan</span>
+                                        <span class="region-percent">5%</span>
+                                    </div>
+                                    <div class="map-region" style="width: 7%;">
+                                        <span class="region-name">Germany</span>
+                                        <span class="region-percent">7%</span>
+                                    </div>
+                                    <div class="map-region" style="width: 8%;">
+                                        <span class="region-name">Other</span>
+                                        <span class="region-percent">8%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-demographics">
+                        <h3>Reader Demographics</h3>
+                        <div class="demographics-charts">
+                            <div class="demographics-chart">
+                                <h4>Academic Status</h4>
+                                <div class="pie-chart">
+                                    <div class="pie-slice" style="--percentage: 50%; --color: #3498db;">
+                                        <span class="pie-label">Students</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 20%; --color: #f1c40f;">
+                                        <span class="pie-label">Faculty</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 15%; --color: #2ecc71;">
+                                        <span class="pie-label">Researchers</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 15%; --color: #e74c3c;">
+                                        <span class="pie-label">Industry</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="demographics-chart">
+                                <h4>Field of Study</h4>
+                                <div class="pie-chart">
+                                    <div class="pie-slice" style="--percentage: 45%; --color: #9b59b6;">
+                                        <span class="pie-label">Engineering</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 30%; --color: #e67e22;">
+                                        <span class="pie-label">Computer Science</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 20%; --color: #16a085;">
+                                        <span class="pie-label">Automotive</span>
+                                    </div>
+                                    <div class="pie-slice" style="--percentage: 5%; --color: #7f8c8d;">
+                                        <span class="pie-label">Other</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="thesis-actions-bar">
+                    <button class="action-btn download-btn">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="action-btn share-btn">
+                        <i class="fas fa-share-alt"></i> Share <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <button class="action-btn more-btn">
+                        <i class="fas fa-ellipsis-h"></i> More <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="actions-secondary">
+                    <button class="secondary-btn recommend-btn">
+                        <i class="fas fa-thumbs-up"></i> Recommend
+                    </button>
+                    <button class="secondary-btn follow-btn">
+                        <i class="fas fa-bell"></i> Follow
+                    </button>
+                    <button class="secondary-btn share-msg-btn">
+                        <i class="fas fa-comment"></i> Share in a message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Access Modal -->
+    <div id="requestModal" class="thesis-modal">
+        <div class="thesis-modal-content">
+            <span class="thesis-modal-close">&times;</span>
+            <h2>Request Access to Full Thesis</h2>
+            <form id="access-request-form">
+                <div class="form-group">
+                    <label for="request-message">Message to Authors:</label>
+                    <textarea id="request-message" rows="4" placeholder="Explain why you need access to this thesis..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="stats no6.js"></script>
+    <script src="thesis-stats.js"></script>
+</body>
+</html>

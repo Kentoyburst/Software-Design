@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Repository - Upload Thesis</title>
+    <link rel="stylesheet" href="upload-thesis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html"><i class="fas fa-search"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html" class="active"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Integrated Thesis Repository and Archive System</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="content-header">
+                <h2>Upload Your Thesis</h2>
+            </div>
+
+            <div class="upload-container">
+                <form id="thesis-upload-form" enctype="multipart/form-data">
+                    <div class="form-section">
+                        <h3>Thesis Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="thesis-title">Thesis Title</label>
+                                <input type="text" id="thesis-title" name="thesisTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="authors">Authors</label>
+                                <input type="text" id="authors" name="authors" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="computer-science">Computer Science</option>
+                                    <option value="engineering">Engineering</option>
+                                    <option value="business">Business</option>
+                                    <option value="arts">Arts and Sciences</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="year">Year</label>
+                                <input type="number" id="year" name="year" min="1990" max="2025" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Thesis Document</h3>
+                        <div class="file-upload">
+                            <input type="file" id="thesis-file" name="thesisFile" accept=".pdf" required>
+                            <div class="file-upload-overlay">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag and drop or click to upload PDF</p>
+                                <span>Maximum file size: 50MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Abstract</h3>
+                        <textarea id="thesis-abstract" name="abstract" rows="5" required placeholder="Enter a brief summary of your thesis..."></textarea>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="keywords">Keywords</label>
+                                <input type="text" id="keywords" name="keywords" placeholder="Separate keywords with commas">
+                            </div>
+                            <div class="form-group">
+                                <label for="advisor">Thesis Advisor</label>
+                                <input type="text" id="advisor" name="advisor">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upload-actions">
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Reset</button>
+                        <button type="submit" class="btn btn-primary">Upload Thesis</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Upload Confirmation -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <i class="fas fa-check-circle"></i>
+                <h3>Thesis Uploaded Successfully!</h3>
+                <p>Your thesis has been submitted for review.</p>
+                <button onclick="closeModal()" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="upload-thesis.js"></script>
+</body>
+</html>
