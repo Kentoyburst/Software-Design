@@ -1,0 +1,300 @@
+/* Settings Page Specific Styles */
+.settings-tabs {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    background: #f9f9f9;
+}
+
+.tab-button.active {
+    background: #f7f7f7;
+    border-bottom: 3px solid #bc4e17;
+    color: #bc4e17;
+}
+
+.settings-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.settings-card {
+    margin-bottom: 20px;
+}
+
+.settings-card h3 {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #bc4e17;
+}
+
+/* Toggle Switch */
+.toggle-group {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #bc4e17;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #bc4e17;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Save Button */
+.save-btn {
+    background-color: #bc4e17;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    align-self: flex-start;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #9e4013;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.notification-options {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Backup and Restore */
+.backup-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.action-btn i {
+    color: #bc4e17;
+}
+
+.backup-history {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.backup-history h4 {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.backup-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.backup-item:last-child {
+    border-bottom: none;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.icon-btn:hover {
+    color: #bc4e17;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .settings-tabs {
+        overflow-x: auto;
+    }
+    
+    .tab-button {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .settings-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-button {
+        border-bottom: none;
+        border-left: 3px solid transparent;
+    }
+    
+    .tab-button.active {
+        border-bottom: none;
+        border-left: 3px solid #bc4e17;
+    }
+    
+    .toggle-group, 
+    .backup-actions,
+    .backup-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-group input,
+    .form-group select {
+        width: 100%;
+    }
+    
+    .save-btn {
+        width: 100%;
+    }
+}

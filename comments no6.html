@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Comments - Computer Engineering Thesis Repository</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="browse-thesis.css">
+    <link rel="stylesheet" href="view-abstract.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .comments-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            resize: vertical;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+        
+        .comment-form button {
+            background-color: #2d7bd8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .comment-form button:hover {
+            background-color: #1c64c2;
+        }
+        
+        .comment-list {
+            margin-top: 20px;
+        }
+        
+        .comment {
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comment:last-child {
+            border-bottom: none;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .commenter-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+        
+        .commenter-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .commenter-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .commenter-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .comment-content {
+            margin-left: 50px;
+            line-height: 1.5;
+        }
+        
+        .comment-actions {
+            margin-top: 8px;
+            margin-left: 50px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .comment-action {
+            font-size: 0.85rem;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .comment-action:hover {
+            color: #2d7bd8;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html" class="active"><i class="fas fa-book-open"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Computer Engineering Thesis Repository</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="article-container">
+                <div class="article-header">
+                    <div class="article-type">
+                        <span class="article-badge">Thesis</span>
+                        <span class="article-status">Full-text available</span>
+                    </div>
+                    <h1 id="thesis-title">AUTOMATIC TURN SIGNAL FOR MOTOR VEHICLES USING ROAD NAVIGATION APPLICATION</h1>
+                    <div class="thesis-metadata">
+                        <span id="thesis-date">2023</span> • 
+                        <span id="thesis-publication">The Computer Engineering Department</span> • 
+                        <span id="thesis-pages">184 pages</span>
+                    </div>
+                    <div class="thesis-doi">
+                        <span>DOI: <a href="#" id="thesis-doi-link">10.55549/ceng.1298753</a></span>
+                    </div>
+                    <div class="thesis-license">
+                        License: <a href="#" id="thesis-license-link">CC BY 4.0</a>
+                    </div>
+                </div>
+
+                <div class="authors-list" id="thesis-authors">
+                    <!-- Authors will be dynamically added here by JS -->
+                </div>
+
+                <div class="thesis-tabs">
+                    <a href="no6.html">Overview</a>
+                    <a href="stats no6.html">Stats</a>
+                    <a href="comments no6.html" class="active">Comments</a>
+                    <a href="citation no6.html">Citations</a>
+                    <a href="references no6.html">References</a>
+                </div>
+
+                <div class="comments-section">
+                    <h2>Comments (4)</h2>
+                    
+                    <div class="comment-form">
+                        <textarea rows="3" placeholder="Add a comment..."></textarea>
+                        <button type="submit">Post Comment</button>
+                    </div>
+                    
+                    <div class="comment-list">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="commenter-avatar">
+                                    <img src="lalaki.jpg" alt="Dr. Emilio Santos">
+                                </div>
+                                <div class="commenter-info">
+                                    <span class="commenter-name">Dr. Emilio Santos</span>
+                                    <span class="comment-date">April 2, 2025</span>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                Impressive work on this device! The application of ultrasonic sensors for detecting waste levels is quite innovative. I'm particularly interested in how you've handled the water level variation issue through your software implementation. This could be applied to other similar environmental monitoring systems.
+                            </div>
+                            <div class="comment-actions">
+                                <span class="comment-action"><i class="fas fa-thumbs-up"></i> Like</span>
+                                <span class="comment-action"><i class="fas fa-reply"></i> Reply</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="commenter-avatar">
+                                    <img src="babae.jpg" alt="Maria Fernandez">
+                                </div>
+                                <div class="commenter-info">
+                                    <span class="commenter-name">Maria Fernandez</span>
+                                    <span class="comment-date">March 28, 2025</span>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                I'm working on a similar project for my local community and your research has been extremely helpful. Have you considered how the device might perform during heavy rainfall or storm conditions? I'd be interested to hear about any durability testing you've conducted.
+                            </div>
+                            <div class="comment-actions">
+                                <span class="comment-action"><i class="fas fa-thumbs-up"></i> Like</span>
+                                <span class="comment-action"><i class="fas fa-reply"></i> Reply</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="commenter-avatar">
+                                    <img src="lalaki.jpg" alt="Ricardo Alvarez">
+                                </div>
+                                <div class="commenter-info">
+                                    <span class="commenter-name">Ricardo Alvarez</span>
+                                    <span class="comment-date">March 15, 2025</span>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                The GSM notification system is a brilliant addition to this project. Have you considered incorporating a mobile app interface that could provide real-time monitoring and analytics of the waste collection data? This could provide valuable insights for municipal waste management systems.
+                            </div>
+                            <div class="comment-actions">
+                                <span class="comment-action"><i class="fas fa-thumbs-up"></i> Like</span>
+                                <span class="comment-action"><i class="fas fa-reply"></i> Reply</span>
+                            </div>
+                        </div>
+                        
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="commenter-avatar">
+                                    <img src="lalaki.jpg" alt="James Wong">
+                                </div>
+                                <div class="commenter-info">
+                                    <span class="commenter-name">James Wong</span>
+                                    <span class="comment-date">March 5, 2025</span>
+                                </div>
+                            </div>
+                            <div class="comment-content">
+                                I appreciated your detailed analysis of the device's power consumption. For future iterations, you might want to explore newer solar cell technologies that could increase efficiency. The sustainability aspect of this project is commendable and addresses a critical environmental issue.
+                            </div>
+                            <div class="comment-actions">
+                                <span class="comment-action"><i class="fas fa-thumbs-up"></i> Like</span>
+                                <span class="comment-action"><i class="fas fa-reply"></i> Reply</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Solar Powered Automated Waste Restraining Device for Sewages.js"></script>
+</body>
+</html>

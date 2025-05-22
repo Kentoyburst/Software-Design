@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Repository - Computer Engineering Thesis</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="browse-thesis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">  
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html" class="active"><i class="fas fa-book-open"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Computer Engineering Thesis Repository</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="content-header">
+                <h2>Computer Engineering Thesis</h2>
+                <div class="search-container">
+                    <input type="text" id="thesis-search" placeholder="Search Computer Engineering theses...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="thesis-filters">
+                <select id="research-area-filter">
+                    <option value="">All Research Areas</option>
+                    <option value="artificial-intelligence">Artificial Intelligence</option>
+                    <option value="robotics">Robotics</option>
+                    <option value="network-security">Network Security</option>
+                    <option value="internet-of-things">Internet of Things</option>
+                    <option value="embedded-systems">Embedded Systems</option>
+                    <option value="automation">Automation</option>
+                </select>
+                <select id="year-filter">
+                    <option value="">All Years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+            </div>
+
+            <!-- Thesis List -->
+            <div class="thesis-list">
+                <!-- Theses will be dynamically populated here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1 of 5</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thesis Modal (Added for Abstract View) -->
+    <div id="thesisModal" class="thesis-modal">
+        <div class="thesis-modal-content">
+            <span class="thesis-modal-close">&times;</span>
+            <h2 id="modalThesisTitle"></h2>
+            <p id="modalThesisAuthors" class="modal-authors"></p>
+            <div id="modalThesisAbstract" class="modal-abstract"></div>
+        </div>
+    </div>
+    <div id="saved-papers">0</div> <div class="research-papers"></div>
+
+    <script src="browse-thesis.js"></script>
+    <script src="user-dashboard.js"></script>
+</body>
+</html>

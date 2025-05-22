@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Thesis Repository</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html"><i class="fas fa-search"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="#" class="active"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Integrated Thesis Repository and Archive System</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="content-header">
+                <h2>Notifications</h2>
+                <div class="notifications-controls">
+                    <button id="mark-all-read" class="btn-secondary">Mark All as Read</button>
+                    <button id="clear-notifications" class="btn-danger">Clear All</button>
+                </div>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="notifications-container">
+                <div class="notification-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="unread">Unread</button>
+                    <button class="filter-btn" data-filter="system">System</button>
+                    <button class="filter-btn" data-filter="research">Research</button>
+                </div>
+
+                <div id="notifications-list" class="notifications-list">
+                    <!-- Notifications will be dynamically populated here -->
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button id="prev-page" class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                <span id="current-page">1</span>
+                <button id="next-page" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="notifications.js"></script>
+    <script src="user-dashboard.js"></script>
+</body>
+</html>

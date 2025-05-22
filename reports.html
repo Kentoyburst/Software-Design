@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Thesis Repository</title>
+    <link rel="stylesheet" href="reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="reports.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Administrator</span>
+        </div>
+        <a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="thesis-repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="review.html"><i class="fas fa-tasks"></i> Review Submissions</a>
+        <a href="reports.html" class="active"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Reports</h2>
+        </div>
+
+        <!-- Report Filters -->
+        <div class="report-filters">
+            <div class="filter-section">
+                <h3>Generate Reports</h3>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="report-type">Report Type:</label>
+                        <select id="report-type">
+                            <option value="user-activity">User Activity</option>
+                            <option value="thesis-uploads">Thesis Uploads</option>
+                            <option value="downloads">Download Statistics</option>
+                            <option value="review-status">Review Status</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="date-range">Date Range:</label>
+                        <select id="date-range">
+                            <option value="last-week">Last 7 Days</option>
+                            <option value="last-month">Last 30 Days</option>
+                            <option value="last-quarter">Last Quarter</option>
+                            <option value="last-year">Last Year</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="filter-group custom-date" id="custom-date-fields">
+                        <div class="date-field">
+                            <label for="start-date">From:</label>
+                            <input type="date" id="start-date">
+                        </div>
+                        <div class="date-field">
+                            <label for="end-date">To:</label>
+                            <input type="date" id="end-date">
+                        </div>
+                    </div>
+                    <button id="generate-report" class="btn-primary">Generate Report</button>
+                    <button id="export-pdf" class="btn-secondary"><i class="fas fa-file-pdf"></i> Export PDF</button>
+                    <button id="export-excel" class="btn-secondary"><i class="fas fa-file-excel"></i> Export Excel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Summary Cards -->
+        <div class="dashboard report-summary">
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Active Users</h3>
+                <p id="active-users">78</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book"></i>
+                <h3>New Submissions</h3>
+                <p id="new-submissions">24</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-download"></i>
+                <h3>Total Downloads</h3>
+                <p id="period-downloads">156</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-search"></i>
+                <h3>Top Searches</h3>
+                <p id="top-searches">42</p>
+            </div>
+        </div>
+        
+        <!-- Report Visualization Section -->
+        <div class="report-visualization">
+            <div class="chart-container">
+                <h3>Activity Trends</h3>
+                <canvas id="activity-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Report Data Table -->
+        <div class="report-data">
+            <h3>Detailed Report Data</h3>
+            <div class="table-responsive">
+                <table id="report-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Authors</th>
+                            <th>Department</th>
+                            <th>Upload Date</th>
+                            <th>Status</th>
+                            <th>Downloads</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Machine Learning Applications in Civil Engineering</td>
+                            <td>Santos, Maria; Cruz, Juan</td>
+                            <td>Civil Engineering</td>
+                            <td>Mar 15, 2025</td>
+                            <td><span class="status approved">Approved</span></td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>Sustainable Building Materials Analysis</td>
+                            <td>Reyes, Ana; Tan, Miguel</td>
+                            <td>Architecture</td>
+                            <td>Mar 12, 2025</td>
+                            <td><span class="status approved">Approved</span></td>
+                            <td>37</td>
+                        </tr>
+                        <tr>
+                            <td>Urban Planning Strategies for Pampanga</td>
+                            <td>Dizon, Carlos</td>
+                            <td>Urban Planning</td>
+                            <td>Mar 10, 2025</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Structural Analysis of Historical Buildings</td>
+                            <td>Garcia, Elena; Santos, Marco</td>
+                            <td>Civil Engineering</td>
+                            <td>Mar 08, 2025</td>
+                            <td><span class="status approved">Approved</span></td>
+                            <td>29</td>
+                        </tr>
+                        <tr>
+                            <td>Renewable Energy Integration in Buildings</td>
+                            <td>Mendoza, Paolo</td>
+                            <td>Electrical Engineering</td>
+                            <td>Mar 05, 2025</td>
+                            <td><span class="status rejected">Rejected</span></td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "index.html";
+            }
+        }
+
+        // Show/hide custom date fields based on selection
+        document.getElementById('date-range').addEventListener('change', function() {
+            if (this.value === 'custom') {
+                document.getElementById('custom-date-fields').style.display = 'flex';
+            } else {
+                document.getElementById('custom-date-fields').style.display = 'none';
+            }
+        });
+
+        // Initialize charts
+        window.onload = function() {
+            const ctx = document.getElementById('activity-chart').getContext('2d');
+            const activityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Thesis Uploads',
+                        data: [12, 19, 15, 25, 22, 30],
+                        borderColor: '#bc4e17',
+                        backgroundColor: 'rgba(188, 78, 23, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Downloads',
+                        data: [30, 45, 58, 75, 85, 92],
+                        borderColor: '#2980b9',
+                        backgroundColor: 'rgba(41, 128, 185, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

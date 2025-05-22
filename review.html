@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Repository - Review Submissions</title>
+    <link rel="stylesheet" href="review.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="review.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Administrator</span>
+        </div>
+        <a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="thesis-repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="review.html" class="active"><i class="fas fa-tasks"></i> Review Submissions</a>
+        <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Review Thesis Submissions</h2>
+            <div class="filter-controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search by title, author, or department...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-dropdown">
+                    <select id="filter-status">
+                        <option value="all">All Submissions</option>
+                        <option value="pending" selected>Pending Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="revisions">Needs Revisions</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="submissions-container">
+            <div class="submissions-list">
+                <!-- Submission items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Thesis Review Modal -->
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <h3>Review Thesis</h3>
+                
+                <div class="thesis-details">
+                    <div class="thesis-header">
+                        <h4 id="modal-thesis-title">Title of the Thesis</h4>
+                        <span id="modal-submission-date">Submitted: March 28, 2025</span>
+                    </div>
+                    
+                    <div class="thesis-info-grid">
+                        <div class="info-item">
+                            <span class="label">Authors:</span>
+                            <span id="modal-authors">Student Name</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Department:</span>
+                            <span id="modal-department">Computer Science</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Advisor:</span>
+                            <span id="modal-advisor">Professor Name</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Year:</span>
+                            <span id="modal-year">2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="abstract-section">
+                        <h5>Abstract:</h5>
+                        <p id="modal-abstract">The abstract of the thesis will appear here...</p>
+                    </div>
+                    
+                    <div class="keywords-section">
+                        <h5>Keywords:</h5>
+                        <div id="modal-keywords">
+                            <!-- Keywords will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="document-preview">
+                        <h5>Document Preview:</h5>
+                        <div class="document-actions">
+                            <a href="#" id="view-document" class="btn btn-secondary" target="_blank">
+                                <i class="fas fa-eye"></i> View Document
+                            </a>
+                            <a href="#" id="download-document" class="btn btn-secondary">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-form">
+                    <h5>Review Details:</h5>
+                    <div class="form-group">
+                        <label for="review-status">Status:</label>
+                        <select id="review-status">
+                            <option value="approved">Approve</option>
+                            <option value="revisions">Request Revisions</option>
+                            <option value="rejected">Reject</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-comments">Comments:</label>
+                        <textarea id="review-comments" rows="4" placeholder="Provide feedback to the author..."></textarea>
+                    </div>
+                    <div class="review-actions">
+                        <button id="close-review" class="btn btn-secondary">Cancel</button>
+                        <button id="submit-review" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <p>Review submitted successfully!</p>
+        </div>
+    </div>
+</body>
+</html>

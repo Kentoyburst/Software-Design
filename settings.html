@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Administrator</span>
+        </div>
+        <a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="thesis-repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="review.html"><i class="fas fa-tasks"></i> Review Submissions</a>
+        <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Settings</h2>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="settings-tabs">
+            <button class="tab-button active" data-tab="general">General</button>
+            <button class="tab-button" data-tab="account">Account</button>
+            <button class="tab-button" data-tab="security">Security</button>
+            <button class="tab-button" data-tab="notifications">Notifications</button>
+            <button class="tab-button" data-tab="backup">Backup & Restore</button>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-content">
+            <!-- General Settings -->
+            <div class="tab-content active" id="general">
+                <div class="settings-card">
+                    <h3>System Settings</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>System Name</label>
+                            <input type="text" value="Integrated Thesis Repository and Archive System" id="system-name">
+                        </div>
+                        <div class="form-group">
+                            <label>Default Language</label>
+                            <select id="default-language">
+                                <option value="en">English</option>
+                                <option value="fil">Filipino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Date Format</label>
+                            <select id="date-format">
+                                <option value="mdy">MM/DD/YYYY</option>
+                                <option value="dmy">DD/MM/YYYY</option>
+                                <option value="ymd">YYYY/MM/DD</option>
+                            </select>
+                        </div>
+                        <div class="form-group toggle-group">
+                            <label>Enable Dark Mode</label>
+                            <label class="toggle">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <button class="save-btn" id="save-general">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Settings -->
+            <div class="tab-content" id="account">
+                <div class="settings-card">
+                    <h3>Admin Profile</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" value="System Administrator" id="admin-name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" value="admin@dhvsu.edu.ph" id="admin-email">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="text" value="+63 123 456 7890" id="admin-contact">
+                        </div>
+                        <button class="save-btn" id="save-account">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="tab-content" id="security">
+                <div class="settings-card">
+                    <h3>Password & Security</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" placeholder="Enter current password" id="current-password">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" placeholder="Enter new password" id="new-password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" placeholder="Confirm new password" id="confirm-password">
+                        </div>
+                        <div class="form-group toggle-group">
+                            <label>Two-Factor Authentication</label>
+                            <label class="toggle">
+                                <input type="checkbox" id="two-factor-auth">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <button class="save-btn" id="save-security">Update Password</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Settings -->
+            <div class="tab-content" id="notifications">
+                <div class="settings-card">
+                    <h3>Notification Preferences</h3>
+                    <div class="settings-form">
+                        <div class="form-group toggle-group">
+                            <label>Email Notifications</label>
+                            <label class="toggle">
+                                <input type="checkbox" id="email-notifications" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="notification-options">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-new-user" checked>
+                                <label for="notify-new-user">New User Registration</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-thesis-upload" checked>
+                                <label for="notify-thesis-upload">New Thesis Upload</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-review">
+                                <label for="notify-review">Pending Reviews</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-system">
+                                <label for="notify-system">System Updates</label>
+                            </div>
+                        </div>
+                        <button class="save-btn" id="save-notifications">Save Preferences</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backup & Restore Settings -->
+            <div class="tab-content" id="backup">
+                <div class="settings-card">
+                    <h3>Database Management</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Automatic Backup</label>
+                            <select id="backup-frequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly" selected>Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="never">Never</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Backup Time</label>
+                            <input type="time" value="02:00" id="backup-time">
+                        </div>
+                        <div class="form-group backup-actions">
+                            <button class="action-btn" id="create-backup">
+                                <i class="fas fa-download"></i> Create Backup Now
+                            </button>
+                            <button class="action-btn" id="restore-backup">
+                                <i class="fas fa-upload"></i> Restore from Backup
+                            </button>
+                        </div>
+                        <div class="backup-history">
+                            <h4>Recent Backups</h4>
+                            <div class="backup-item">
+                                <span>backup_20250315.zip</span>
+                                <span>March 15, 2025 - 02:00 AM</span>
+                                <div class="backup-actions">
+                                    <button class="icon-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="backup-item">
+                                <span>backup_20250308.zip</span>
+                                <span>March 8, 2025 - 02:00 AM</span>
+                                <div class="backup-actions">
+                                    <button class="icon-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="save-btn" id="save-backup">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="settings.js"></script>
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Requests - Reviewer</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer-dashboard.css">
+    <link rel="stylesheet" href="reviewer-access request.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html" class="active"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="continue.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Access Requests</h2>
+        </div>
+
+        <!-- Access Request Overview -->
+        <div class="dashboard">
+            <div class="card">
+                <i class="fas fa-hourglass-half"></i>
+                <h3>Pending Requests</h3>
+                <p id="pending-requests">8</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Approved Requests</h3>
+                <p id="approved-requests">42</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-times-circle"></i>
+                <h3>Rejected Requests</h3>
+                <p id="rejected-requests">7</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <h3>Avg. Processing Time</h3>
+                <p id="avg-processing-time">1.5 days</p>
+            </div>
+        </div>
+        
+        <!-- Request Filter and Search -->
+        <div class="filter-section">
+            <div class="search-box">
+                <input type="text" id="search-requests" placeholder="Search by name, title, or department...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-options">
+                <select id="status-filter">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <select id="date-filter">
+                    <option value="all">All Time</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+                <select id="department-filter">
+                    <option value="all">All Departments</option>
+                    <option value="comp-sci">Computer Science</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="business">Business</option>
+                    <option value="arts">Arts</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Access Requests Table -->
+        <div class="requests-table-container">
+            <table class="requests-table">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Requestor</th>
+                        <th>Thesis Title</th>
+                        <th>Department</th>
+                        <th>Date Requested</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Request Items -->
+                    <tr class="request-row" data-id="REQ-2025-042">
+                        <td>REQ-2025-042</td>
+                        <td>Sarah Johnson</td>
+                        <td>Urban Planning Solutions for Traffic Congestion</td>
+                        <td>Engineering</td>
+                        <td>May 15, 2025</td>
+                        <td>Research</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-042"><i class="fas fa-eye"></i></button>
+                            <button class="btn approve-btn" data-id="REQ-2025-042"><i class="fas fa-check"></i></button>
+                            <button class="btn reject-btn" data-id="REQ-2025-042"><i class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-041">
+                        <td>REQ-2025-041</td>
+                        <td>Michael Lee</td>
+                        <td>Analysis of Sustainable Building Materials for Tropical Climates</td>
+                        <td>Engineering</td>
+                        <td>May 14, 2025</td>
+                        <td>Academic Project</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-041"><i class="fas fa-eye"></i></button>
+                            <button class="btn approve-btn" data-id="REQ-2025-041"><i class="fas fa-check"></i></button>
+                            <button class="btn reject-btn" data-id="REQ-2025-041"><i class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-040">
+                        <td>REQ-2025-040</td>
+                        <td>Lisa Wong</td>
+                        <td>Financial Analysis of Renewable Energy Investments</td>
+                        <td>Business</td>
+                        <td>May 13, 2025</td>
+                        <td>Research</td>
+                        <td><span class="status approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-040"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-039">
+                        <td>REQ-2025-039</td>
+                        <td>Robert Garcia</td>
+                        <td>Biodiversity Assessment of Campus Flora</td>
+                        <td>Arts</td>
+                        <td>May 12, 2025</td>
+                        <td>Research</td>
+                        <td><span class="status approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-039"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-038">
+                        <td>REQ-2025-038</td>
+                        <td>Thomas Brown</td>
+                        <td>Development of Machine Learning Algorithm for Predicting Student Performance</td>
+                        <td>Computer Science</td>
+                        <td>May 11, 2025</td>
+                        <td>Academic Project</td>
+                        <td><span class="status rejected">Rejected</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-038"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-037">
+                        <td>REQ-2025-037</td>
+                        <td>Emma Davis</td>
+                        <td>Study of Traditional Architecture Influences on Modern Building Design</td>
+                        <td>Engineering</td>
+                        <td>May 10, 2025</td>
+                        <td>Research</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-037"><i class="fas fa-eye"></i></button>
+                            <button class="btn approve-btn" data-id="REQ-2025-037"><i class="fas fa-check"></i></button>
+                            <button class="btn reject-btn" data-id="REQ-2025-037"><i class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr class="request-row" data-id="REQ-2025-036">
+                        <td>REQ-2025-036</td>
+                        <td>David Wilson</td>
+                        <td>Impact of Social Media on Student Mental Health</td>
+                        <td>Psychology</td>
+                        <td>May 9, 2025</td>
+                        <td>Academic Project</td>
+                        <td><span class="status approved">Approved</span></td>
+                        <td class="action-buttons">
+                            <button class="btn view-btn" data-id="REQ-2025-036"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="pagination-btn prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <span class="page-indicator">Page 1 of 3</span>
+            <button class="pagination-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Request Details Modal -->
+    <div class="modal" id="request-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Access Request Details</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="request-details">
+                    <div class="detail-group">
+                        <h4>Request Information</h4>
+                        <div class="detail-row">
+                            <span class="label">Request ID:</span>
+                            <span class="value" id="modal-request-id">REQ-2025-042</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Date Requested:</span>
+                            <span class="value" id="modal-request-date">May 15, 2025</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Status:</span>
+                            <span class="value status pending" id="modal-request-status">Pending</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <h4>Requestor Information</h4>
+                        <div class="detail-row">
+                            <span class="label">Name:</span>
+                            <span class="value" id="modal-requestor-name">Sarah Johnson</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Email:</span>
+                            <span class="value" id="modal-requestor-email">sjohnson@email.com</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Affiliation:</span>
+                            <span class="value" id="modal-requestor-affiliation">Graduate Student</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Department:</span>
+                            <span class="value" id="modal-requestor-department">Engineering</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <h4>Thesis Information</h4>
+                        <div class="detail-row">
+                            <span class="label">Title:</span>
+                            <span class="value" id="modal-thesis-title">Urban Planning Solutions for Traffic Congestion</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Authors:</span>
+                            <span class="value" id="modal-thesis-authors">James Wilson, Maria Garcia</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Department:</span>
+                            <span class="value" id="modal-thesis-department">Engineering</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Publication Year:</span>
+                            <span class="value" id="modal-thesis-year">2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <h4>Request Details</h4>
+                        <div class="detail-row">
+                            <span class="label">Purpose:</span>
+                            <span class="value" id="modal-request-purpose">Research</span>
+                        </div>
+                        <div class="detail-row full-width">
+                            <span class="label">Reason for Access:</span>
+                            <div class="value text-block" id="modal-request-reason">
+                                I am conducting research on urban planning strategies for my graduate thesis. This thesis contains important case studies and methodologies that would be valuable for my research on traffic congestion solutions in developing urban centers.
+                            </div>
+                        </div>
+                        <div class="detail-row full-width">
+                            <span class="label">Supporting Document:</span>
+                            <div class="document-preview">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>approval_letter.pdf</span>
+                                <button class="view-document-btn">View Document</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="footer-comments">
+                    <label for="reviewer-comments">Comments (optional):</label>
+                    <textarea id="reviewer-comments" placeholder="Add any comments or notes regarding this request..."></textarea>
+                </div>
+                <div class="footer-buttons">
+                    <button class="btn reject-btn" id="modal-reject-btn"><i class="fas fa-times"></i> Reject Request</button>
+                    <button class="btn approve-btn" id="modal-approve-btn"><i class="fas fa-check"></i> Approve Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="reviewer-access request.js"></script>
+</body>
+</html>

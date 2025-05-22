@@ -1,0 +1,243 @@
+.thesis-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.thesis-filters select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+.thesis-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.thesis-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.thesis-item:hover {
+    transform: translateY(-5px);
+}
+
+.thesis-image {
+    height: 200px;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thesis-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.thesis-details {
+    padding: 15px;
+}
+
+.thesis-details h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+}
+
+.thesis-details .authors {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.thesis-details .meta {
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.thesis-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Modal Styles */
+.thesis-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.thesis-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.thesis-modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.thesis-modal-close:hover,
+.thesis-modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-authors {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.modal-abstract {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .thesis-filters {
+        flex-direction: column;
+    }
+    
+    .thesis-modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+}
+.thesis-actions .view-abstract-btn {
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.thesis-actions .view-abstract-btn:hover {
+    background: #2980b9;
+}
+/* Save Button Styles */
+.thesis-actions .save-btn {
+    padding: 10px 15px;
+    background: #27ae60; /* A vibrant green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thesis-actions .save-btn:hover {
+    background: #2ecc71; /* A slightly lighter green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.thesis-actions .save-btn:active {
+    transform: translateY(0); /* Reset the lift effect on click */
+}
+
+.thesis-actions .save-btn i {
+    margin-right: 5px; /* Space between icon and text */
+    font-size: 16px; /* Slightly larger icon */
+}
+.modal-metadata {
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions .action-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.modal-actions .download-btn {
+    background: #3498db;
+    color: white;
+}
+
+.modal-actions .download-btn:hover {
+    background: #2980b9;
+}
+
+.modal-actions .save-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.modal-actions .save-btn:hover {
+    background: #2ecc71;
+}
+
+.modal-actions i {
+    margin-right: 5px;
+}

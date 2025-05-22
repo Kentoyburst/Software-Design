@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="admin-dashboard.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Administrator</span>
+        </div>
+        <a href="admin-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="users.html"><i class="fas fa-users"></i> Users</a>
+        <a href="thesis-repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="review.html"><i class="fas fa-tasks"></i> Review Submissions</a>
+        <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Admin Dashboard</h2>
+        </div>
+
+
+        <div class="dashboard">
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h3>Total Users</h3>
+                <p id="total-users">0</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book"></i>
+                <h3>Uploaded Theses</h3>
+                <p id="uploaded-theses">0</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-tasks"></i>
+                <h3>Pending Reviews</h3>
+                <p id="pending-reviews">0</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-download"></i>
+                <h3>Total Downloads</h3>
+                <p id="total-downloads">0</p>
+            </div>
+        </div>
+        
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <i class="fas fa-upload"></i>
+                    <div class="activity-details">
+                        <p><strong>New Thesis Uploaded</strong> - "Machine Learning Applications in Healthcare"</p>
+                        <span class="activity-time">Today, 2:30 PM</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-user-plus"></i>
+                    <div class="activity-details">
+                        <p><strong>New User Registered</strong> - student@dhvsu.edu.ph</p>
+                        <span class="activity-time">Today, 11:45 AM</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="activity-details">
+                        <p><strong>Thesis Approved</strong> - "Analysis of Renewable Energy Sources"</p>
+                        <span class="activity-time">Yesterday, 4:15 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    function confirmLogout() {
+        if (confirm("Are you sure you want to logout?")) {
+            window.location.href ="index.html";
+        }
+    }
+
+    document.getElementById("total-users").textContent = 150;
+    document.getElementById("uploaded-theses").textContent = 75;
+    document.getElementById("pending-reviews").textContent = 12;
+    document.getElementById("total-downloads").textContent = 230;
+</script>
+
+</body>
+</html>

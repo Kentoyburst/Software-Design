@@ -1,0 +1,158 @@
+/* citation-no1.css */
+@import 'view-abstract.css';
+
+/* Citations container */
+.citations-container {
+    margin-bottom: 30px;
+}
+
+.citations-container h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Citation header with filters and export */
+.citation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.citation-filter select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+}
+
+.export-btn {
+    padding: 8px 15px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-btn:hover {
+    background-color: #f5f5f5;
+}
+
+/* Citations list */
+.citations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.citation-item {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+}
+
+.citation-item:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.citation-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.citation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.citation-authors {
+    font-weight: 500;
+}
+
+.citation-date, .citation-journal {
+    color: #777;
+}
+
+.citation-excerpt {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 3px solid #eee;
+}
+
+.citation-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.citation-actions a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.citation-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Load more button */
+.load-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.load-more-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #3498db;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .citation-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .citation-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .citation-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

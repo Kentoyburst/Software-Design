@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link rel="stylesheet" href="forgotpass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <div class="overlay">
+        <div class="container">
+            <h2>Password Recovery</h2>
+            
+            <!-- Step indicator -->
+            <div class="steps-container">
+                <div class="step active" id="step1">1</div>
+                <div class="step-connector"></div>
+                <div class="step" id="step2">2</div>
+                <div class="step-connector"></div>
+                <div class="step" id="step3">3</div>
+            </div>
+            <div class="steps-labels">
+                <span class="step-label active">Verify Email</span>
+                <span class="step-label">Verification Code</span>
+                <span class="step-label">New Password</span>
+            </div>
+
+            <!-- Step 1: Email Verification Form -->
+            <form id="email-form" class="form-step active">
+                <div class="form-info">
+                    <p>Enter your email address to receive a verification code.</p>
+                </div>
+
+                <label for="email">Email address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <div class="captcha-container">
+                    <div class="g-recaptcha" data-sitekey="6LeBHvEqAAAAADLaUP5XvVrd2Hvz-FVG_30KeEkU"></div>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="sendVerificationCode()">Send Verification Code</button>
+                
+                <p class="back-link"><a href="continue.html">Back to Login</a></p>
+            </form>
+
+            <!-- Step 2: Verification Code Form -->
+            <form id="code-form" class="form-step">
+                <div class="form-info">
+                    <p>Enter the 6-digit verification code sent to your email.</p>
+                </div>
+
+                <div class="verification-code-container">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 1)">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 2)">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 3)">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 4)">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 5)">
+                    <input type="text" class="verification-input" maxlength="1" onkeyup="moveToNext(this, 6)">
+                </div>
+
+                <div class="timer-container">
+                    <p>Code expires in: <span id="timer">5:00</span></p>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="verifyCode()">Verify Code</button>
+                <button type="button" class="resend-btn" onclick="resendCode()">Resend Code</button>
+                
+                <p class="back-link"><a href="#" onclick="goToStep(1)">Back</a></p>
+            </form>
+
+            <!-- Step 3: New Password Form -->
+            <form id="password-form" class="form-step">
+                <div class="form-info">
+                    <p>Create a new password for your account.</p>
+                </div>
+
+                <label for="new-password">New Password:</label>
+                <div class="password-container">
+                    <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+                    <span class="password-toggle" onclick="togglePassword('new-password')">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+                
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-indicator" id="strength-indicator"></div>
+                    </div>
+                    <span id="strength-text">Password strength</span>
+                </div>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <div class="password-container">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
+                    <span class="password-toggle" onclick="togglePassword('confirm-password')">
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="resetPassword()">Reset Password</button>
+                
+                <p class="back-link"><a href="#" onclick="goToStep(2)">Back</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('success-modal')">&times;</span>
+            <div class="success-icon">✓</div>
+            <h3>Password Reset Successful</h3>
+            <p id="success-message">Your password has been reset successfully.</p>
+            <button type="button" class="submit-btn" onclick="redirectToLogin()">Back to Login</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('error-modal')">&times;</span>
+            <div class="error-icon">✕</div>
+            <h3>Error</h3>
+            <p id="error-message">An error occurred. Please try again.</p>
+            <button type="button" class="submit-btn" onclick="closeModal('error-modal')">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        // For demo purposes - simulating known emails
+        const knownEmails = [
+            "kentlaqui@gmail.com", 
+            "holdenkentlaqui@gmail.com", 
+            "student@dhvsu.edu.ph"
+        ];
+        
+        let currentStep = 1;
+        let timerInterval;
+
+        // Function to navigate between steps
+        function goToStep(step) {
+            // Hide all forms
+            document.querySelectorAll('.form-step').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Hide all step indicators
+            document.querySelectorAll('.step, .step-label').forEach(stepElem => {
+                stepElem.classList.remove('active');
+            });
+            
+            // Show the current form
+            if (step === 1) {
+                document.getElementById('email-form').classList.add('active');
+            } else if (step === 2) {
+                document.getElementById('code-form').classList.add('active');
+            } else if (step === 3) {
+                document.getElementById('password-form').classList.add('active');
+            }
+            
+            // Update steps indicator
+            for (let i = 1; i <= step; i++) {
+                document.getElementById('step' + i).classList.add('active');
+                document.querySelectorAll('.step-label')[i-1].classList.add('active');
+            }
+            
+            currentStep = step;
+        }
+
+        // Send verification code
+        function sendVerificationCode() {
+            const email = document.getElementById('email').value;
+            
+            // Verify CAPTCHA
+            const captchaResponse = grecaptcha.getResponse();
+            if (!captchaResponse) {
+                showError("Please complete the CAPTCHA verification.");
+                return;
+            }
+            
+            // Check if email exists (for demo purposes)
+            if (!knownEmails.includes(email)) {
+                showError("Email not found in our records.");
+                grecaptcha.reset();
+                return;
+            }
+            
+            // Simulate sending verification code
+            setTimeout(() => {
+                goToStep(2);
+                startTimer(5 * 60); // 5 minutes
+                // Focus on first input
+                document.querySelector('.verification-input').focus();
+            }, 1000);
+        }
+
+        // Start countdown timer
+        function startTimer(duration) {
+            clearInterval(timerInterval);
+            
+            let timer = duration;
+            const display = document.getElementById('timer');
+            
+            timerInterval = setInterval(function () {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                
+                display.textContent = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+                
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    display.textContent = "Expired";
+                    document.querySelector('.resend-btn').style.opacity = "1";
+                }
+            }, 1000);
+        }
+
+        // Move to next input in verification code
+        function moveToNext(field, position) {
+            if (field.value.length === field.maxLength) {
+                const nextField = field.nextElementSibling;
+                if (nextField) {
+                    nextField.focus();
+                }
+            } else if (field.value.length === 0) {
+                const prevField = field.previousElementSibling;
+                if (prevField) {
+                    prevField.focus();
+                }
+            }
+        }
+
+        // Resend verification code
+        function resendCode() {
+            // Reset all input fields
+            document.querySelectorAll('.verification-input').forEach(input => {
+                input.value = '';
+            });
+            
+            // Focus on first input
+            document.querySelector('.verification-input').focus();
+            
+            // Restart timer
+            startTimer(5 * 60);
+        }
+
+        // Verify code
+        function verifyCode() {
+            // Collect all verification digits
+            const inputs = document.querySelectorAll('.verification-input');
+            let code = '';
+            let isComplete = true;
+            
+            inputs.forEach(input => {
+                code += input.value;
+                if (!input.value) {
+                    isComplete = false;
+                }
+            });
+            
+            if (!isComplete) {
+                showError("Please enter the complete verification code.");
+                return;
+            }
+            
+            // For demo purposes, accept any 6-digit code
+            if (code.length === 6) {
+                goToStep(3);
+                
+                // Set up password strength meter
+                document.getElementById('new-password').addEventListener('input', checkPasswordStrength);
+            } else {
+                showError("Invalid verification code. Please try again.");
+            }
+        }
+
+        // Check password strength
+        function checkPasswordStrength() {
+            const password = document.getElementById('new-password').value;
+            const indicator = document.getElementById('strength-indicator');
+            const strengthText = document.getElementById('strength-text');
+            
+            // Calculate strength
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+            
+            // Update UI
+            indicator.style.width = strength + '%';
+            
+            if (strength <= 25) {
+                indicator.style.backgroundColor = '#ff4d4d';
+                strengthText.textContent = 'Weak';
+            } else if (strength <= 50) {
+                indicator.style.backgroundColor = '#ffa64d';
+                strengthText.textContent = 'Moderate';
+            } else if (strength <= 75) {
+                indicator.style.backgroundColor = '#99cc00';
+                strengthText.textContent = 'Good';
+            } else {
+                indicator.style.backgroundColor = '#33cc33';
+                strengthText.textContent = 'Strong';
+            }
+        }
+
+        // Reset password
+        function resetPassword() {
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (!newPassword) {
+                showError("Please enter a new password.");
+                return;
+            }
+            
+            if (newPassword.length < 8) {
+                showError("Password must be at least 8 characters long.");
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                showError("Passwords do not match.");
+                return;
+            }
+            
+            // Simulate password reset
+            setTimeout(() => {
+                document.getElementById('success-message').textContent = "Your password has been reset successfully.";
+                openModal('success-modal');
+            }, 1000);
+        }
+
+        // Redirect to login
+        function redirectToLogin() {
+            window.location.href = "continue.html";
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = passwordInput.nextElementSibling.querySelector('i');
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        function showError(message) {
+            document.getElementById('error-message').textContent = message;
+            openModal('error-modal');
+        }
+    </script>
+</body>
+</html>

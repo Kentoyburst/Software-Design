@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis References - Computer Engineering Thesis Repository</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="browse-thesis.css">
+    <link rel="stylesheet" href="view-abstract.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .references-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .references-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .reference-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            line-height: 1.5;
+        }
+        
+        .reference-item:last-child {
+            border-bottom: none;
+        }
+        
+        .reference-metadata {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .reference-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .reference-action {
+            display: inline-flex;
+            align-items: center;
+            color: #2d7bd8;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .reference-action i {
+            margin-right: 5px;
+        }
+        
+        .reference-action:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-filter {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-family: inherit;
+        }
+        
+        .reference-search {
+            margin-left: auto;
+            position: relative;
+        }
+        
+        .reference-search input {
+            padding: 8px 12px 8px 35px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        .reference-search i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html" class="active"><i class="fas fa-book-open"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="continue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Computer Engineering Thesis Repository</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="article-container">
+                <div class="article-header">
+                    <div class="article-type">
+                        <span class="article-badge">Thesis</span>
+                        <span class="article-status">Full-text available</span>
+                    </div>
+                    <h1 id="thesis-title">Solar Powered Automated Waste Restraining Device for Sewages</h1>
+                    <div class="thesis-metadata">
+                        <span id="thesis-date">2023</span> • 
+                        <span id="thesis-publication">The Computer Engineering Department</span> • 
+                        <span id="thesis-pages">184 pages</span>
+                    </div>
+                    <div class="thesis-doi">
+                        <span>DOI: <a href="#" id="thesis-doi-link">10.55549/ceng.1298753</a></span>
+                    </div>
+                    <div class="thesis-license">
+                        License: <a href="#" id="thesis-license-link">CC BY 4.0</a>
+                    </div>
+                </div>
+
+                <div class="authors-list" id="thesis-authors">
+                    <!-- Authors will be dynamically added here by JS -->
+                </div>
+
+                <div class="thesis-tabs">
+                    <a href="no1.html">Overview</a>
+                    <a href="stats no1.html">Stats</a>
+                    <a href="comments no1.html">Comments</a>
+                    <a href="citation no1.html">Citations</a>
+                    <a href="references no1.html" class="active">References</a>
+                </div>
+
+                <div class="references-section">
+                    <h2>References (10)</h2>
+                    
+                    <div class="reference-filter">
+                        <span class="filter-label">Sort by:</span>
+                        <select class="filter-select">
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="date" selected>Date</option>
+                            <option value="relevance">Relevance</option>
+                        </select>
+                        
+                        <span class="filter-label" style="margin-left: 20px;">Type:</span>
+                        <select class="filter-select">
+                            <option value="all" selected>All Types</option>
+                            <option value="journal">Journal Articles</option>
+                            <option value="conference">Conference Papers</option>
+                            <option value="book">Books</option>
+                            <option value="other">Other</option>
+                        </select>
+                        
+                        <div class="reference-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search references...">
+                        </div>
+                    </div>
+                    
+                    <ul class="references-list">
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Chikozho, C., & Mapedza, E. (2017). In Search of Socio-ecological Resilience and Adaptive Capacity: Articulating the Governance Imperatives for Improved Canal Management on the Barotse Floodplain, Zambia. <em>International Journal of the Commons</em>, 11(1), 119-143.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 25 citations • DOI: 10.18352/ijc.636
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Daniels, N. (2014). Drainage System Cleaner a Solution to Environmental Hazards. <em>International Refereed Journal of Engineering and Science (IRJES)</em>, 3(3), 54-60.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 12 citations • DOI: 10.6084/irjes.0303.08
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Kumar, K. V., Pavan, B., & Malleswararao, J. N. (2020). Automatic Drainage Cleaner. <em>International Research Journal of Engineering and Technology (IRJET)</em>, 7(5), 3892-3896.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 5 citations • E-ISSN: 2395-0056
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Lamond, J., Bhattacharya, N., & Bloch, R. (2012). <em>Cities and Flooding: A Guide to Integrated Urban Flood Risk Management for the 21st Century</em>. World Bank Publications.
+                            </div>
+                            <div class="reference-metadata">
+                                Book • 189 citations • ISBN: 978-0-8213-8866-2
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Pereira, T. M., De Carvalho, T. R., Mendes, T. T., & Formiga, K. T. M. (2022). Evaluation of Water Level in Flowing Channels Using Ultrasonic Sensors. <em>Sustainability</em>, 14(9), 5512.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 3 citations • DOI: 10.3390/su14095512
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Ramanathan, S. (2019). Sewage Cleaning Machine. <em>International Journal of Research and Analytical Reviews (IJRAR)</em>, 6(2), 598-601.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 8 citations • E-ISSN: 2348-1269
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Republic Act No. 9003. (2001, January 26). <em>The Ecological Solid Waste Management Act of 2000</em>. Republic of the Philippines.
+                            </div>
+                            <div class="reference-metadata">
+                                Government Document • 103 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Subia, G. S., Amaranto, J. L., Amaranto, J. C., Bustamante, J. Y., & Damaso, I. C. (2019). Flood Prevention and Mitigation Initiatives towards a Flood-Free City. <em>American Academic Scientific Research Journal for Engineering, Technology, and Sciences</em>, 58(1), 215-224.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 17 citations • E-ISSN: 2313-4410
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                U L, G., & Rampur, V. (2016). Semi-Automatic Drain for Sewage Water Treatment of Floating Materials. <em>International Journal of Research in Engineering and Technology</em>, 5(7), 280-284.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 9 citations • DOI: 10.15623/ijret.2016.0507043
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Design and Development of Sewage Cleaning Mobile Robot. (2021). In <em>2021 7th International Conference on Advanced Computing and Communication Systems (ICACCS)</em> (pp. 1935-1939). IEEE.
+                            </div>
+                            <div class="reference-metadata">
+                                Conference Paper • 6 citations • DOI: 10.1109/ICACCS51430.2021.9587740
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Solar Powered Automated Waste Restraining Device for Sewages.js"></script>
+</body>
+</html>

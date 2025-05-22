@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Reviewer Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html" class="active"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="continue.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Thesis Review Management</h2>
+        </div>
+
+        <!-- Review Statistics -->
+        <div class="dashboard">
+            <div class="card">
+                <i class="fas fa-hourglass-half"></i>
+                <h3>Pending Reviews</h3>
+                <p id="pending-reviews">5</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Approved</h3>
+                <p id="approved-count">23</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-times-circle"></i>
+                <h3>Rejected</h3>
+                <p id="rejected-count">3</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <h3>Avg. Review Time</h3>
+                <p id="avg-review-time">2.3 days</p>
+            </div>
+        </div>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="pending">Pending Reviews</button>
+            <button class="tab-btn" data-tab="access">Access Requests</button>
+            <button class="tab-btn" data-tab="history">Review History</button>
+        </div>
+
+        <!-- Pending Reviews Tab -->
+        <div class="tab-content active" id="pending-tab">
+            <div class="action-bar">
+                <div class="search-bar">
+                    <input type="text" id="pending-search" placeholder="Search by title or author...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="department-filter">
+                        <option value="all">All Departments</option>
+                        <option value="computer-science">Computer Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="business">Business</option>
+                        <option value="arts">Arts and Sciences</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="review-list">
+                <!-- Review Item -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <h3>Development of Machine Learning Algorithm for Predicting Student Performance</h3>
+                        <span class="status pending">Pending Review</span>
+                    </div>
+                    <div class="review-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">John Smith</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Department:</span>
+                            <span class="value">Computer Science</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Submitted:</span>
+                            <span class="value">May 5, 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> Preview</button>
+                        <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <h3>Analysis of Sustainable Building Materials for Tropical Climates</h3>
+                        <span class="status pending">Pending Review</span>
+                    </div>
+                    <div class="review-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">Maria Garcia</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Department:</span>
+                            <span class="value">Engineering</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Submitted:</span>
+                            <span class="value">May 4, 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> Preview</button>
+                        <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <h3>Impact of Digital Marketing Strategies on Small Businesses</h3>
+                        <span class="status pending">Pending Review</span>
+                    </div>
+                    <div class="review-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">David Chen</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Department:</span>
+                            <span class="value">Business</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Submitted:</span>
+                            <span class="value">May 3, 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> Preview</button>
+                        <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Access Requests Tab -->
+        <div class="tab-content" id="access-tab">
+            <div class="action-bar">
+                <div class="search-bar">
+                    <input type="text" id="access-search" placeholder="Search by requestor or thesis...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="access-status-filter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="denied">Denied</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="access-requests-list">
+                <!-- Access Request Item -->
+                <div class="access-request-item">
+                    <div class="request-header">
+                        <h3>Request to access "Smart Grid Implementation for University Campus"</h3>
+                        <span class="status pending">Pending Approval</span>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-group">
+                            <span class="label">Requested by:</span>
+                            <span class="value">Lisa Wong (Faculty)</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Requested:</span>
+                            <span class="value">May 6, 2025</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Purpose:</span>
+                            <span class="value">Research reference for ongoing project</span>
+                        </div>
+                    </div>
+                    <div class="request-actions">
+                        <div class="author-response">
+                            <span class="author-status waiting"><i class="fas fa-hourglass-half"></i> Waiting for author response</span>
+                        </div>
+                        <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+
+                <div class="access-request-item">
+                    <div class="request-header">
+                        <h3>Request to access "Biodiversity Assessment of Campus Flora"</h3>
+                        <span class="status pending">Pending Approval</span>
+                    </div>
+                    <div class="request-details">
+                        <div class="detail-group">
+                            <span class="label">Requested by:</span>
+                            <span class="value">Michael Johnson (Student)</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Requested:</span>
+                            <span class="value">May 5, 2025</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Purpose:</span>
+                            <span class="value">Reference for thesis writing</span>
+                        </div>
+                    </div>
+                    <div class="request-actions">
+                        <div class="author-response">
+                            <span class="author-status approved"><i class="fas fa-check-circle"></i> Author approved</span>
+                        </div>
+                        <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+                        <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review History Tab -->
+        <div class="tab-content" id="history-tab">
+            <div class="action-bar">
+                <div class="search-bar">
+                    <input type="text" id="history-search" placeholder="Search by title or reviewer...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="history-status-filter">
+                        <option value="all">All Status</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <select id="history-date-filter">
+                        <option value="all">All Time</option>
+                        <option value="week">Past Week</option>
+                        <option value="month">Past Month</option>
+                        <option value="year">Past Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="history-list">
+                <!-- History Item -->
+                <div class="history-item">
+                    <div class="history-header">
+                        <h3>Urban Planning Solutions for Traffic Congestion</h3>
+                        <span class="status approved">Approved</span>
+                    </div>
+                    <div class="history-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">Alex Rivera</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Reviewed by:</span>
+                            <span class="value">Dr. Samantha Lee</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Review Date:</span>
+                            <span class="value">May 2, 2025</span>
+                        </div>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <h3>Financial Analysis of Renewable Energy Investments</h3>
+                        <span class="status rejected">Rejected</span>
+                    </div>
+                    <div class="history-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">Robert Kim</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Reviewed by:</span>
+                            <span class="value">Prof. James Wilson</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Review Date:</span>
+                            <span class="value">April 28, 2025</span>
+                        </div>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal" id="preview-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thesis Preview</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="thesis-details">
+                    <h4 id="modal-thesis-title">Development of Machine Learning Algorithm for Predicting Student Performance</h4>
+                    <p id="modal-thesis-authors"><strong>Authors:</strong> John Smith</p>
+                    <p id="modal-thesis-department"><strong>Department:</strong> Computer Science</p>
+                    <p id="modal-thesis-date"><strong>Submitted:</strong> May 5, 2025</p>
+                </div>
+                <div class="thesis-abstract">
+                    <h5>Abstract</h5>
+                    <p id="modal-thesis-abstract">This research aims to develop a machine learning algorithm that can predict student academic performance based on various factors including attendance, participation, previous grades, and socioeconomic factors. The study utilizes neural networks and decision trees to create a predictive model with over 85% accuracy. The findings demonstrate significant correlations between certain behavioral patterns and academic outcomes, which could be utilized by educational institutions to implement early intervention strategies for at-risk students.</p>
+                </div>
+                <div class="thesis-preview">
+                    <h5>Document Preview</h5>
+                    <div class="pdf-preview">
+                        <img src="/api/placeholder/600/800" alt="PDF Preview" />
+                        <div class="preview-overlay">
+                            <button class="btn view-full-btn"><i class="fas fa-external-link-alt"></i> Open Full PDF</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-form">
+                    <h5>Review Comments</h5>
+                    <textarea id="review-comments" placeholder="Enter your comments here..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn reject-btn"><i class="fas fa-times"></i> Reject</button>
+                <button class="btn approve-btn"><i class="fas fa-check"></i> Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rejection Modal -->
+    <div class="modal" id="rejection-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reject Thesis</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Please provide a reason for rejection that will be sent to the author:</p>
+                <textarea id="rejection-reason" placeholder="Explain why this thesis is being rejected..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn cancel-btn">Cancel</button>
+                <button class="btn confirm-reject-btn">Confirm Rejection</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="reviewer.js"></script>
+</body>
+</html>

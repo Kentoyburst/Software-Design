@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis Repository - Reviewer</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer-dashboard.css">
+    <link rel="stylesheet" href="reviewer-thesis repository.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis-repository.html" class="active"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Thesis Repository</h2>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search by title, author, or keywords...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="department-filter">Department:</label>
+                    <select id="department-filter">
+                        <option value="">All Departments</option>
+                        <option value="computer-engineering" selected>Computer Engineering</option>
+                        <option value="civil-engineering">Civil Engineering</option>
+                        <option value="electrical-engineering">Electrical Engineering</option>
+                        <option value="mechanical-engineering">Mechanical Engineering</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="year-filter">Year:</label>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thesis Table Section -->
+        <div class="thesis-table-section">
+            <table id="thesis-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Department</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be populated by JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="pagination">
+                <!-- Pagination will be handled by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- View Thesis Modal -->
+    <div id="view-thesis-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Thesis Details</h2>
+            <div class="thesis-details">
+                <h3 class="thesis-title"></h3>
+                <p><strong>Authors:</strong> <span class="thesis-authors"></span></p>
+                <p><strong>Department:</strong> <span class="thesis-department"></span></p>
+                <p><strong>Date Submitted:</strong> <span class="thesis-date"></span></p>
+                <p><strong>Status:</strong> <span class="thesis-status"></span></p>
+                <p><strong>Abstract:</strong></p>
+                <p class="thesis-abstract"></p>
+                <div class="thesis-actions">
+                    <button class="download-thesis-btn"><i class="fas fa-download"></i> Download PDF</button>
+                    <button class="begin-review-btn"><i class="fas fa-clipboard-check"></i> Begin Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="reviewer-thesis repository.js"></script>
+</body>
+</html>

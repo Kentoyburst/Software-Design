@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviewer Settings</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer-dashboard.css">
+    <link rel="stylesheet" href="reviewer-settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Reviewer Settings</h2>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="profile">Profile Settings</button>
+                <button class="tab-btn" data-tab="notifications">Notifications</button>
+                <button class="tab-btn" data-tab="review-preferences">Review Preferences</button>
+                <button class="tab-btn" data-tab="security">Security</button>
+            </div>
+            
+            <!-- Profile Settings Tab -->
+            <div class="tab-content active" id="profile">
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Personal Information</h3>
+                        <p>Update your personal profile information</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="profile-picture">
+                            <div class="avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <button class="upload-btn"><i class="fas fa-camera"></i> Change Photo</button>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <form id="profile-form">
+                                <div class="form-group">
+                                    <label for="fullname">Full Name</label>
+                                    <input type="text" id="fullname" name="fullname" value="Engr. Ruby Rosa Nicdao-Puno">
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" value="rubyrosanicdaopuno@dhvsu.edu.ph">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" value="+63 912 345 6789">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <select id="department" name="department">
+                                        <option value="computer_science">Computer Engineering</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="position">Position</label>
+                                    <input type="text" id="position" name="position" value="Associate Professor">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bio">Biography</label>
+                                    <textarea id="bio" name="bio" rows="4">Engr. Ruby Rosa Nicdao-Puno is a distinguished computer engineering professor at Don Honorio Ventura State University (DHVSU) in Pampanga, Philippines. She holds a Bachelor of Science in Computer Engineering and a Master of Information Technology. Her academic interests include Research Methods, Systems Analysis and Design, and Cloud Computing.</textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="save-btn">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications Tab -->
+            <div class="tab-content" id="notifications">
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Notification Preferences</h3>
+                        <p>Manage how you receive notifications about theses and reviews</p>
+                    </div>
+                    
+                    <form id="notification-form">
+                        <div class="notification-section">
+                            <h4>Email Notifications</h4>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>New Thesis Assignment</h5>
+                                    <p>Receive an email when a new thesis is assigned to you for review</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>Upcoming Review Deadline</h5>
+                                    <p>Get reminders before review deadlines (3 days prior)</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>Thesis Update Notifications</h5>
+                                    <p>Receive updates when a thesis you've reviewed gets updated</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>System Announcements</h5>
+                                    <p>Important announcements and updates about the thesis system</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-section">
+                            <h4>System Notifications</h4>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>Dashboard Notifications</h5>
+                                    <p>Show notifications on your dashboard for new assignments and updates</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>Browser Notifications</h5>
+                                    <p>Allow browser push notifications when the system is open</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-section">
+                            <h4>Notification Frequency</h4>
+                            
+                            <div class="form-group">
+                                <label for="digest-frequency">Email Digest Frequency</label>
+                                <select id="digest-frequency" name="digest-frequency">
+                                    <option value="immediate">Immediate (As they happen)</option>
+                                    <option value="daily" selected>Daily Digest</option>
+                                    <option value="weekly">Weekly Digest</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">Save Preferences</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Review Preferences Tab -->
+            <div class="tab-content" id="review-preferences">
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Review Preferences</h3>
+                        <p>Configure your thesis review preferences and assignments</p>
+                    </div>
+                    
+                    <form id="review-preferences-form">
+                        <div class="preference-section">
+                            <h4>Expertise Areas</h4>
+                            <p>Select your areas of expertise for thesis reviews</p>
+                            
+                            <div class="expertise-tags">
+                                <div class="expertise-tag selected">
+                                    <span>Civil Engineering</span>
+                                    <button type="button" class="remove-tag"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="expertise-tag selected">
+                                    <span>Structural Analysis</span>
+                                    <button type="button" class="remove-tag"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="expertise-tag selected">
+                                    <span>Sustainable Building</span>
+                                    <button type="button" class="remove-tag"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="expertise-tag selected">
+                                    <span>Urban Planning</span>
+                                    <button type="button" class="remove-tag"><i class="fas fa-times"></i></button>
+                                </div>
+                                
+                                <div class="add-expertise">
+                                    <input type="text" placeholder="Add expertise area...">
+                                    <button type="button" class="add-tag-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-section">
+                            <h4>Review Capacity</h4>
+                            
+                            <div class="form-group">
+                                <label for="max-reviews">Maximum Concurrent Reviews</label>
+                                <select id="max-reviews" name="max-reviews">
+                                    <option value="1">1 thesis at a time</option>
+                                    <option value="3" selected>3 theses at a time</option>
+                                    <option value="5">5 theses at a time</option>
+                                    <option value="10">10 theses at a time</option>
+                                    <option value="unlimited">No limit</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="review-period">Preferred Review Period</label>
+                                <select id="review-period" name="review-period">
+                                    <option value="3">3 days</option>
+                                    <option value="5" selected>5 days</option>
+                                    <option value="7">7 days</option>
+                                    <option value="14">14 days</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-section">
+                            <h4>Availability Calendar</h4>
+                            <p>Mark periods when you're unavailable for new thesis review assignments</p>
+                            
+                            <div class="calendar-placeholder">
+                                <div class="unavailable-period">
+                                    <div class="unavailable-details">
+                                        <p><strong>May 20-25, 2025</strong> - Conference Attendance</p>
+                                    </div>
+                                    <button type="button" class="remove-period"><i class="fas fa-trash"></i></button>
+                                </div>
+                                
+                                <div class="unavailable-period">
+                                    <div class="unavailable-details">
+                                        <p><strong>June 10-15, 2025</strong> - Research Trip</p>
+                                    </div>
+                                    <button type="button" class="remove-period"><i class="fas fa-trash"></i></button>
+                                </div>
+                                
+                                <button type="button" class="add-period-btn"><i class="fas fa-plus"></i> Add Unavailable Period</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">Save Preferences</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Security Tab -->
+            <div class="tab-content" id="security">
+                <div class="settings-card">
+                    <div class="settings-header">
+                        <h3>Security Settings</h3>
+                        <p>Manage your account security and access preferences</p>
+                    </div>
+                    
+                    <form id="security-form">
+                        <div class="security-section">
+                            <h4>Change Password</h4>
+                            
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" name="current-password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="new-password">
+                                <div class="password-strength">
+                                    <div class="strength-meter" data-strength="0">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                    <div class="strength-text">Password strength</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" name="confirm-password">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="save-btn" id="change-password-btn">Update Password</button>
+                            </div>
+                        </div>
+                        
+                        <div class="security-section">
+                            <h4>Two-Factor Authentication</h4>
+                            
+                            <div class="notification-option">
+                                <div class="notification-details">
+                                    <h5>Enable Two-Factor Authentication</h5>
+                                    <p>Add an extra layer of security to your account</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="enable-2fa">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="tfa-setup hidden" id="tfa-setup">
+                                <p>Set up two-factor authentication using your authenticator app</p>
+                                <div class="qr-code">
+                                    <img src="/api/placeholder/200/200" alt="2FA QR Code">
+                                </div>
+                                <p class="setup-code">Manual setup code: <strong>EKPC-DFGH-IJKL-MNOP</strong></p>
+                                
+                                <div class="form-group">
+                                    <label for="verification-code">Enter Verification Code</label>
+                                    <input type="text" id="verification-code" name="verification-code">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="save-btn" id="verify-2fa-btn">Verify & Enable</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="security-section">
+                            <h4>Session Management</h4>
+                            
+                            <div class="active-sessions">
+                                <div class="session-item">
+                                    <div class="session-details">
+                                        <div class="session-device">
+                                            <i class="fas fa-laptop"></i>
+                                            <div>
+                                                <h5>Windows PC - Chrome</h5>
+                                                <p>Manila, Philippines (Current device)</p>
+                                            </div>
+                                        </div>
+                                        <div class="session-time">Active now</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="session-item">
+                                    <div class="session-details">
+                                        <div class="session-device">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <div>
+                                                <h5>iPhone - Safari</h5>
+                                                <p>Manila, Philippines</p>
+                                            </div>
+                                        </div>
+                                        <div class="session-time">Last active: May 14, 2025</div>
+                                    </div>
+                                    <button type="button" class="revoke-btn">Revoke</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="danger-btn">Sign Out All Other Devices</button>
+                            </div>
+                        </div>
+                        
+                        <div class="security-section">
+                            <h4>Account Access Logs</h4>
+                            <div class="access-logs">
+                                <div class="log-item">
+                                    <div class="log-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="log-details">
+                                        <p><strong>Successful login</strong> - Chrome on Windows</p>
+                                        <span class="log-time">Today at 8:30 AM • Manila, Philippines</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-item">
+                                    <div class="log-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="log-details">
+                                        <p><strong>Successful login</strong> - Safari on iPhone</p>
+                                        <span class="log-time">May 14, 2025 at 6:15 PM • Manila, Philippines</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="log-item">
+                                    <div class="log-icon warning">
+                                        <i class="fas fa-exclamation"></i>
+                                    </div>
+                                    <div class="log-details">
+                                        <p><strong>Failed login attempt</strong> - Chrome on Windows</p>
+                                        <span class="log-time">May 13, 2025 at 10:12 AM • Manila, Philippines</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn">View Full History</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Unavailable Period Modal -->
+    <div class="modal" id="unavailable-period-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Unavailable Period</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="unavailable-period-form">
+                    <div class="form-group">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="end-date">End Date</label>
+                        <input type="date" id="end-date" name="end-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="unavailable-reason">Reason (Optional)</label>
+                        <input type="text" id="unavailable-reason" name="unavailable-reason" placeholder="e.g. Vacation, Conference, etc.">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn" id="cancel-period-btn">Cancel</button>
+                <button class="btn save-btn" id="save-period-btn">Save Period</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="reviewer-settings.js"></script>
+</body>
+</html>

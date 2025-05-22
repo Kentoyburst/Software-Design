@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviewer Dashboard</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Reviewer Dashboard</h2>
+        </div>
+
+        <!-- Dashboard Overview -->
+        <div class="dashboard">
+            <div class="card">
+                <i class="fas fa-hourglass-half"></i>
+                <h3>Pending Reviews</h3>
+                <p id="pending-reviews">5</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Approved Theses</h3>
+                <p id="approved-count">23</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-times-circle"></i>
+                <h3>Rejected Theses</h3>
+                <p id="rejected-count">3</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <h3>Avg. Review Time</h3>
+                <p id="avg-review-time">2.3 days</p>
+            </div>
+        </div>
+        
+        <!-- Recent Activity Section -->
+        <div class="content-header">
+            <h2>Recent Activity</h2>
+        </div>
+        
+        <div class="activity-section">
+            <div class="activity-list">
+                <!-- Activity Item -->
+                <div class="activity-item">
+                    <div class="activity-icon approved">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Approved Thesis</h4>
+                        <p>Urban Planning Solutions for Traffic Congestion</p>
+                        <span class="activity-time">Today at 10:30 AM</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon pending">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>New Thesis Submitted</h4>
+                        <p>Development of Machine Learning Algorithm for Predicting Student Performance</p>
+                        <span class="activity-time">Today at 9:15 AM</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon rejected">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Rejected Thesis</h4>
+                        <p>Financial Analysis of Renewable Energy Investments</p>
+                        <span class="activity-time">Yesterday at 4:45 PM</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon access">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Access Request Approved</h4>
+                        <p>Biodiversity Assessment of Campus Flora</p>
+                        <span class="activity-time">Yesterday at 2:30 PM</span>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon approved">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Approved Thesis</h4>
+                        <p>Analysis of Sustainable Building Materials for Tropical Climates</p>
+                        <span class="activity-time">May 13, 2025 at 11:20 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Reviews Section -->
+        <div class="content-header">
+            <h2>Upcoming Reviews</h2>
+        </div>
+        
+        <div class="upcoming-reviews">
+            <div class="review-list">
+                <!-- Review Item -->
+                <div class="review-item">
+                    <div class="review-header">
+                        <h3>Development of Machine Learning Algorithm for Predicting Student Performance</h3>
+                        <span class="status pending">Due in 3 days</span>
+                    </div>
+                    <div class="review-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">John Smith</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Department:</span>
+                            <span class="value">Computer Science</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Submitted:</span>
+                            <span class="value">May 5, 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> Preview</button>
+                        <button class="btn begin-review-btn"><i class="fas fa-clipboard-check"></i> Begin Review</button>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <h3>Analysis of Sustainable Building Materials for Tropical Climates</h3>
+                        <span class="status pending">Due in 4 days</span>
+                    </div>
+                    <div class="review-details">
+                        <div class="detail-group">
+                            <span class="label">Submitted by:</span>
+                            <span class="value">Maria Garcia</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Department:</span>
+                            <span class="value">Engineering</span>
+                        </div>
+                        <div class="detail-group">
+                            <span class="label">Date Submitted:</span>
+                            <span class="value">May 4, 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="btn view-btn"><i class="fas fa-eye"></i> Preview</button>
+                        <button class="btn begin-review-btn"><i class="fas fa-clipboard-check"></i> Begin Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Review Statistics -->
+        <div class="row">
+            <div class="column">
+                <div class="content-header">
+                    <h2>Monthly Reviews</h2>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        <p><i class="fas fa-chart-bar"></i> Monthly Review Statistics</p>
+                        <p class="chart-details">Completed: 26 | Pending: 5 | Avg Time: 2.3 days</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content-header">
+                    <h2>Review Distribution</h2>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        <p><i class="fas fa-chart-pie"></i> Department Distribution</p>
+                        <p class="chart-details">ComSci: 40% | Eng: 35% | Bus: 15% | Arts: 10%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal" id="preview-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thesis Preview</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="thesis-details">
+                    <h4 id="modal-thesis-title">Development of Machine Learning Algorithm for Predicting Student Performance</h4>
+                    <p id="modal-thesis-authors"><strong>Authors:</strong> John Smith</p>
+                    <p id="modal-thesis-department"><strong>Department:</strong> Computer Science</p>
+                    <p id="modal-thesis-date"><strong>Submitted:</strong> May 5, 2025</p>
+                </div>
+                <div class="thesis-abstract">
+                    <h5>Abstract</h5>
+                    <p id="modal-thesis-abstract">This research aims to develop a machine learning algorithm that can predict student academic performance based on various factors including attendance, participation, previous grades, and socioeconomic factors. The study utilizes neural networks and decision trees to create a predictive model with over 85% accuracy. The findings demonstrate significant correlations between certain behavioral patterns and academic outcomes, which could be utilized by educational institutions to implement early intervention strategies for at-risk students.</p>
+                </div>
+                <div class="thesis-preview">
+                    <h5>Document Preview</h5>
+                    <div class="pdf-preview">
+                        <img src="/api/placeholder/600/800" alt="PDF Preview" />
+                        <div class="preview-overlay">
+                            <button class="btn view-full-btn"><i class="fas fa-external-link-alt"></i> Open Full PDF</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn begin-review-btn"><i class="fas fa-clipboard-check"></i> Begin Review</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="reviewer-dashboard.js"></script>
+</body>
+</html>

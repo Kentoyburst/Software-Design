@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thesis References - Computer Engineering Thesis Repository</title>
+    <link rel="stylesheet" href="user-dashboard.css">
+    <link rel="stylesheet" href="browse-thesis.css">
+    <link rel="stylesheet" href="view-abstract.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .references-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .references-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .reference-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            line-height: 1.5;
+        }
+        
+        .reference-item:last-child {
+            border-bottom: none;
+        }
+        
+        .reference-metadata {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .reference-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .reference-action {
+            display: inline-flex;
+            align-items: center;
+            color: #2d7bd8;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .reference-action i {
+            margin-right: 5px;
+        }
+        
+        .reference-action:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-filter {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-family: inherit;
+        }
+        
+        .reference-search {
+            margin-left: auto;
+            position: relative;
+        }
+        
+        .reference-search input {
+            padding: 8px 12px 8px 35px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        .reference-search i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <div class="profile-details">
+                    <h3 id="username">Holden Kent</h3>
+                    <p>Student</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="user-dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a>
+                <a href="browse-thesis.html" class="active"><i class="fas fa-book-open"></i> <span>Browse Thesis</span></a>
+                <a href="saved-papers.html"><i class="fas fa-bookmark"></i> <span>Saved Papers</span></a>
+                <a href="upload-thesis.html"><i class="fas fa-upload"></i> <span>Upload Thesis</span></a>
+                <a href="notifications.html"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+                <a href="user-settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a>
+                <a href="contin5ue.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </nav>
+        </div>
+        <div class="header">
+            <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+            <h1>Computer Engineering Thesis Repository</h1>
+            <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+        </div>
+
+        <div class="main-content">
+            <div class="article-container">
+                <div class="article-header">
+                    <div class="article-type">
+                        <span class="article-badge">Thesis</span>
+                        <span class="article-status">Full-text available</span>
+                    </div>
+                    <h1 id="thesis-title">Automated LCD Masked-Based Lithography PCB Layout Etching System</h1>
+                    <div class="thesis-metadata">
+                        <span id="thesis-date">2023</span> • 
+                        <span id="thesis-publication">The Computer Engineering Department</span> • 
+                        <span id="thesis-pages">184 pages</span>
+                    </div>
+                    <div class="thesis-doi">
+                        <span>DOI: <a href="#" id="thesis-doi-link">10.55549/ceng.1298753</a></span>
+                    </div>
+                    <div class="thesis-license">
+                        License: <a href="#" id="thesis-license-link">CC BY 4.0</a>
+                    </div>
+                </div>
+
+                <div class="authors-list" id="thesis-authors">
+                    <!-- Authors will be dynamically added here by JS -->
+                </div>
+
+                <div class="thesis-tabs">
+                    <a href="no5.html">Overview</a>
+                    <a href="stats no5.html">Stats</a>
+                    <a href="comments no5.html">Comments</a>
+                    <a href="citation no5.html">Citations</a>
+                    <a href="references no5.html" class="active">References</a>
+                </div>
+
+                <div class="references-section">
+                    <h2>References (8)</h2>
+                    
+                    <div class="reference-filter">
+                        <span class="filter-label">Sort by:</span>
+                        <select class="filter-select">
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="date" selected>Date</option>
+                            <option value="relevance">Relevance</option>
+                        </select>
+                        
+                        <span class="filter-label" style="margin-left: 20px;">Type:</span>
+                        <select class="filter-select">
+                            <option value="all" selected>All Types</option>
+                            <option value="journal">Journal Articles</option>
+                            <option value="conference">Conference Papers</option>
+                            <option value="book">Books</option>
+                            <option value="other">Other</option>
+                        </select>
+                        
+                        <div class="reference-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search references...">
+                        </div>
+                    </div>
+                    
+                    <ul class="references-list">
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Suwandi, D., Aziz, R., Sifa, A., Haris, E., Istiyanto, J., & Whulanza, Y. (2018). Dry film photoresist application to a printed circuit board (PCB) using a maskless photolithography method. <em>International Journal of Technology</em>, 9(5), 1006-1014.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 13 citations • DOI: 10.14716/ijtech.v9i5.1363
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Santos, L., Corado, R.A., Malapit, N.S., Nonog, S.E., & Sarno, J.M. (2018). Development of an Automated Pre-sensitized Printed Circuit Board Etching Machine. <em>International Journal of Engineering Research and Technology</em>, 7(3), 214-219.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 9 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Cruz, M.E., & Dizon, A. (2021). A Proposed Natural Science E-Instructional Systems Design (E-ISD) for the Mendiola Consortium. <em>San Beda University Journal of Graduate School Research</em>, 2(1), 45-57.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 6 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Bhunia, S., & Tehranipoor, M. (2019). Printed Circuit Board (PCB): Design and Test. <em>Hardware Security: A Hands-on Learning Approach</em>, 81–105.
+                            </div>
+                            <div class="reference-metadata">
+                                Book Chapter • 31 citations • DOI: 10.1016/b978-0-12-812477-2.00009-5
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Silvestre, S., Salazar, J., & Marzo, J. (2019). Printed Circuit Board (PCB) Design Process and Fabrication. <em>Laboratory Manual for Engineering Electronics</em>, Universitat Politècnica de Catalunya.
+                            </div>
+                            <div class="reference-metadata">
+                                Educational Resource • 22 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Obe, C.T., Oti, S.E., Eya, C.U., Nnadi, D.B.N., & Nnadi, O.E. (2020). A low-cost printed circuit board design technique and processes using ferric chloride solution. <em>Nigerian Journal of Technology</em>, 39(2), 594-601.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 8 citations • DOI: 10.4314/njt.v39i2.29
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                Guduru, B., & Eswaran, P. (2016). Development of Direct PCB Clad Printer. <em>International Journal of Series in Engineering Science</em>, 2(1), 27-41.
+                            </div>
+                            <div class="reference-metadata">
+                                Journal Article • 5 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                        
+                        <li class="reference-item">
+                            <div class="reference-content">
+                                International Organization for Standardization. (2011). Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models. <em>ISO/IEC 25010:2011</em>.
+                            </div>
+                            <div class="reference-metadata">
+                                Standards Document • 247 citations
+                            </div>
+                            <div class="reference-actions">
+                                <span class="reference-action"><i class="fas fa-external-link-alt"></i> View Source</span>
+                                <span class="reference-action"><i class="fas fa-copy"></i> Copy Citation</span>
+                                <span class="reference-action"><i class="fas fa-bookmark"></i> Save</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="no5.js"></script>
+</body>
+</html>

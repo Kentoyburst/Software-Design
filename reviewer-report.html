@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviewer Reports</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="reviewer-dashboard.css">
+    <link rel="stylesheet" href="reviewer-report.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="Don_Honorio_Ventura_State_University_logo.png" alt="Don Honorio Ventura State University Logo"> 
+        <h1>Integrated Thesis Repository and Archive System</h1>
+        <img src="CEA-LOGO-removebg-preview.png" alt="CEA Logo">
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="admin-profile">
+            <i class="fas fa-user-shield"></i>
+            <span>Thesis Reviewer</span>
+        </div>
+        <a href="reviewer-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="reviewer-thesis repository.html"><i class="fas fa-book"></i> Thesis Repository</a>
+        <a href="reviewer.html"><i class="fas fa-clipboard-check"></i> Review Manager</a>
+        <a href="reviewer-access request.html"><i class="fas fa-download"></i> Access Requests</a>
+        <a href="reviewer-report.html" class="active"><i class="fas fa-chart-bar"></i> Reports</a>
+        <a href="reviewer-settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="continue.html" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>        
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h2>Review Reports</h2>
+        </div>
+
+        <!-- Date Range Filter -->
+        <div class="filter-section">
+            <div class="date-filter">
+                <div class="filter-group">
+                    <label for="start-date">From:</label>
+                    <input type="date" id="start-date" name="start-date" value="2025-04-15">
+                </div>
+                <div class="filter-group">
+                    <label for="end-date">To:</label>
+                    <input type="date" id="end-date" name="end-date" value="2025-05-15">
+                </div>
+                <button class="btn filter-btn"><i class="fas fa-filter"></i> Apply Filter</button>
+            </div>
+            <div class="report-actions">
+                <button class="btn export-btn"><i class="fas fa-file-export"></i> Export Report</button>
+                <button class="btn print-btn"><i class="fas fa-print"></i> Print Report</button>
+            </div>
+        </div>
+
+        <!-- Overview Stats -->
+        <div class="content-header">
+            <h3>Review Summary</h3>
+        </div>
+
+        <div class="dashboard reports-dashboard">
+            <div class="card">
+                <i class="fas fa-tasks"></i>
+                <h3>Total Reviews</h3>
+                <p id="total-reviews">31</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Approved</h3>
+                <p id="approved-count">23</p>
+                <span class="percentage">74%</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-times-circle"></i>
+                <h3>Rejected</h3>
+                <p id="rejected-count">3</p>
+                <span class="percentage">10%</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-hourglass-half"></i>
+                <h3>Pending</h3>
+                <p id="pending-count">5</p>
+                <span class="percentage">16%</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <h3>Avg. Review Time</h3>
+                <p id="avg-review-time">2.3 days</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>On-Time Reviews</h3>
+                <p id="ontime-reviews">28</p>
+                <span class="percentage">90%</span>
+            </div>
+        </div>
+
+        <!-- Review Trends Chart -->
+        <div class="charts-section">
+            <div class="chart-container full-width">
+                <div class="chart-header">
+                    <h3>Review Activity Trends</h3>
+                    <div class="chart-controls">
+                        <select id="trend-period">
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly" selected>Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <p><i class="fas fa-chart-line"></i> Review Activity Over Time</p>
+                    <p class="chart-details">Shows the trend of reviews completed over selected time period</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-row">
+            <div class="chart-container half-width">
+                <div class="chart-header">
+                    <h3>Review Status Distribution</h3>
+                </div>
+                <div class="chart-placeholder">
+                    <p><i class="fas fa-chart-pie"></i> Status Distribution</p>
+                    <p class="chart-details">Approved: 74% | Rejected: 10% | Pending: 16%</p>
+                </div>
+            </div>
+            <div class="chart-container half-width">
+                <div class="chart-header">
+                    <h3>Department Distribution</h3>
+                </div>
+                <div class="chart-placeholder">
+                    <p><i class="fas fa-chart-pie"></i> Department Overview</p>
+                    <p class="chart-details">ComSci: 40% | Eng: 35% | Bus: 15% | Arts: 10%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Review Table -->
+        <div class="content-header">
+            <h3>Review Details</h3>
+            <div class="search-box">
+                <input type="text" placeholder="Search by title or author...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="reports-table">
+                <thead>
+                    <tr>
+                        <th>Thesis Title <i class="fas fa-sort"></i></th>
+                        <th>Author(s) <i class="fas fa-sort"></i></th>
+                        <th>Department <i class="fas fa-sort"></i></th>
+                        <th>Status <i class="fas fa-sort"></i></th>
+                        <th>Date Submitted <i class="fas fa-sort"></i></th>
+                        <th>Date Reviewed <i class="fas fa-sort"></i></th>
+                        <th>Review Time <i class="fas fa-sort"></i></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Urban Planning Solutions for Traffic Congestion</td>
+                        <td>Sarah Johnson</td>
+                        <td>Civil Engineering</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td>May 5, 2025</td>
+                        <td>May 15, 2025</td>
+                        <td>1.5 days</td>
+                        <td>
+                            <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Development of Machine Learning Algorithm for Predicting Student Performance</td>
+                        <td>John Smith</td>
+                        <td>Computer Science</td>
+                        <td><span class="status-badge pending">Pending</span></td>
+                        <td>May 5, 2025</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>
+                            <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Financial Analysis of Renewable Energy Investments</td>
+                        <td>Robert Chen</td>
+                        <td>Business</td>
+                        <td><span class="status-badge rejected">Rejected</span></td>
+                        <td>May 1, 2025</td>
+                        <td>May 14, 2025</td>
+                        <td>2.1 days</td>
+                        <td>
+                            <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Biodiversity Assessment of Campus Flora</td>
+                        <td>Emily Zhang</td>
+                        <td>Environmental Science</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td>April 28, 2025</td>
+                        <td>May 12, 2025</td>
+                        <td>2.5 days</td>
+                        <td>
+                            <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Analysis of Sustainable Building Materials for Tropical Climates</td>
+                        <td>Maria Garcia</td>
+                        <td>Architecture</td>
+                        <td><span class="status-badge approved">Approved</span></td>
+                        <td>April 30, 2025</td>
+                        <td>May 13, 2025</td>
+                        <td>3.0 days</td>
+                        <td>
+                            <button class="action-btn view-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button class="page-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="ellipsis">...</span>
+            <button class="page-btn">10</button>
+            <button class="page-btn next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="content-header">
+            <h3>Performance Metrics</h3>
+        </div>
+
+        <div class="performance-metrics">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h4>Review Efficiency</h4>
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">
+                        <span class="value">92</span>
+                        <span class="unit">%</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 92%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>0%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                    <p class="metric-description">Based on review time and quality assessment</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h4>Timeliness Score</h4>
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">
+                        <span class="value">90</span>
+                        <span class="unit">%</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>0%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                    <p class="metric-description">Percentage of reviews completed within deadline</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h4>Feedback Quality</h4>
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="metric-content">
+                    <div class="metric-value">
+                        <span class="value">4.7</span>
+                        <span class="unit">/5</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 94%;"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>0</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <p class="metric-description">Average rating of feedback quality from administrators</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal" id="details-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Review Details</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="thesis-details">
+                    <h4 id="modal-thesis-title">Urban Planning Solutions for Traffic Congestion</h4>
+                    <p id="modal-thesis-authors"><strong>Authors:</strong> Sarah Johnson</p>
+                    <p id="modal-thesis-department"><strong>Department:</strong> Civil Engineering</p>
+                </div>
+                
+                <div class="review-timeline">
+                    <h5>Review Timeline</h5>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4>Submitted for Review</h4>
+                                <p>May 5, 2025 at 2:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4>Review Started</h4>
+                                <p>May 14, 2025 at 10:15 AM</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h4>Review Completed</h4>
+                                <p>May 15, 2025 at 10:30 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-details-section">
+                    <h5>Review Assessment</h5>
+                    <div class="assessment-grid">
+                        <div class="assessment-item">
+                            <span class="assessment-label">Originality</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="assessment-value">4/5</span>
+                        </div>
+                        <div class="assessment-item">
+                            <span class="assessment-label">Methodology</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="assessment-value">5/5</span>
+                        </div>
+                        <div class="assessment-item">
+                            <span class="assessment-label">Literature Review</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="assessment-value">4/5</span>
+                        </div>
+                        <div class="assessment-item">
+                            <span class="assessment-label">Analysis</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="assessment-value">4/5</span>
+                        </div>
+                        <div class="assessment-item">
+                            <span class="assessment-label">Writing Quality</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="assessment-value">5/5</span>
+                        </div>
+                        <div class="assessment-item">
+                            <span class="assessment-label">Overall Score</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="assessment-value">4.4/5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-comments">
+                    <h5>Review Comments</h5>
+                    <div class="comment-box">
+                        <p>
+                            This thesis presents an excellent analysis of urban planning solutions for traffic 
+                            congestion. The methodology is well-structured and the data collection was thorough. 
+                            The literature review covers most key aspects but could benefit from more recent 
+                            international case studies. The analysis of traffic patterns is insightful and the 
+                            proposed solutions are practical. The writing quality is exceptional with clear 
+                            organization and professional academic presentation.
+                        </p>
+                        <p>
+                            Recommended for approval with minor revisions to expand on comparative international 
+                            case studies in the literature review section.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn export-btn"><i class="fas fa-file-export"></i> Export Details</button>
+            </div>
+        </div>
+    </div>
+    <script src="reviewer-report.js"></script>
+</body>
+</html>
