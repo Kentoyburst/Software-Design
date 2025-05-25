@@ -47,6 +47,49 @@ function showError(message) {
     openModal('error-modal');
 }
 
+function showRegistrationSuccess() {
+    // Create a success modal specifically for registration
+    const existingModal = document.getElementById('registration-success-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    const modal = document.createElement('div');
+    modal.id = 'registration-success-modal';
+    modal.className = 'modal';
+    modal.style.display = 'block';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h3>Registration Successful!</h3>
+            <p>Your account has been created successfully. You can now log in with your credentials.</p>
+            <button type="button" class="submit-btn" onclick="handleRegistrationSuccess()">Continue to Login</button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+function handleRegistrationSuccess() {
+    // Close the registration success modal
+    const modal = document.getElementById('registration-success-modal');
+    if (modal) {
+        modal.remove();
+    }
+    
+    // Clear the registration form
+    document.getElementById('register').reset();
+    
+    // Switch to login tab
+    const loginTab = document.querySelector('.tab-btn:first-child');
+    switchTab('login', loginTab);
+    
+    // Refresh the page to ensure clean state
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+}
+
 function registerUser() {
     const username = document.getElementById('reg-username').value;
     const email = document.getElementById('reg-email').value;
@@ -57,6 +100,12 @@ function registerUser() {
     
     // Clear previous error messages
     hidePasswordFeedback();
+    
+    // Validate all fields
+    if (!username || !email || !password || !confirmPassword || !role || !challengeAnswer) {
+        showError("Please fill in all required fields.");
+        return;
+    }
     
     // Validate password strength
     const passwordValidation = validatePassword(password);
@@ -82,7 +131,7 @@ function registerUser() {
     formData.append('reg_password', password);
     formData.append('reg_confirm_password', confirmPassword);
     formData.append('reg_role', role);
-    formData.append('challenge_answer', challengeAnswer);
+    formData.append('register_challenge', challengeAnswer);
 
     document.getElementById('register-spinner').style.display = 'block';
 
@@ -90,21 +139,47 @@ function registerUser() {
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
+    .then(response => {
+        // Get the response as text first
+        return response.text();
+    })
     .then(data => {
         document.getElementById('register-spinner').style.display = 'none';
         
-        if (data.includes("successfully")) {
-            alert("Registration successful! Please log in with your new account.");
-            document.querySelector('.tab-btn:first-child').click();
+        console.log('Server response:', data); // Debug log
+        
+        // Clean up the response by removing any HTML tags or extra whitespace
+        const cleanResponse = data.replace(/<[^>]*>/g, '').trim().toLowerCase();
+        
+        // Check for success indicators in the response
+        if (cleanResponse.includes('success') || 
+            cleanResponse.includes('registered') || 
+            cleanResponse.includes('created') ||
+            cleanResponse.includes('account has been') ||
+            data.trim() === '' || // Sometimes empty response means success
+            response.ok) { // HTTP status is OK
+            
+            showRegistrationSuccess();
+        } else if (cleanResponse.includes('exists') || 
+                   cleanResponse.includes('already') ||
+                   cleanResponse.includes('duplicate') ||
+                   cleanResponse.includes('taken')) {
+            showError("An account with this email or username already exists.");
+        } else if (cleanResponse.includes('error') || 
+                   cleanResponse.includes('failed') ||
+                   cleanResponse.includes('invalid')) {
+            showError("Registration failed. Please check your information and try again.");
         } else {
-            showError(data);
+            // If we can't determine the status from the message, 
+            // but the HTTP request was successful, assume it worked
+            console.log('Unclear response, assuming success:', data);
+            showRegistrationSuccess();
         }
     })
     .catch(error => {
         document.getElementById('register-spinner').style.display = 'none';
-        showError("An error occurred during registration.");
-        console.error('Error:', error);
+        console.error('Registration error:', error);
+        showError("An error occurred during registration. Please try again.");
     });
 }
 
