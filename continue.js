@@ -1,3 +1,4 @@
+// Static user accounts (in a real app, this would be stored securely)
 const accounts = {
     "administrator": { email: "kentlaqui@gmail.com", password: "1234", type: "admin" },
     "user123": { email: "holdenkentlaqui@gmail.com", password: "user123", type: "user" },
@@ -13,6 +14,9 @@ const CHALLENGES = {
 
 let currentUserType = ""; 
 let currentUsername = ""; 
+
+// Simulate a simple user database in memory (for GitHub Pages)
+let registeredUsers = JSON.parse(sessionStorage.getItem('registeredUsers')) || {};
 
 function switchTab(tabId, element) {
     document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
@@ -83,11 +87,6 @@ function handleRegistrationSuccess() {
     // Switch to login tab
     const loginTab = document.querySelector('.tab-btn:first-child');
     switchTab('login', loginTab);
-    
-    // Refresh the page to ensure clean state
-    setTimeout(() => {
-        window.location.reload();
-    }, 500);
 }
 
 function registerUser() {
@@ -125,62 +124,47 @@ function registerUser() {
         return;
     }
 
-    const formData = new FormData();
-    formData.append('reg_username', username);
-    formData.append('reg_email', email);
-    formData.append('reg_password', password);
-    formData.append('reg_confirm_password', confirmPassword);
-    formData.append('reg_role', role);
-    formData.append('register_challenge', challengeAnswer);
+    // Check if username or email already exists
+    if (registeredUsers[username]) {
+        showError("Username already exists. Please choose a different username.");
+        return;
+    }
 
+    // Check if email already exists in registered users
+    for (const user in registeredUsers) {
+        if (registeredUsers[user].email === email) {
+            showError("An account with this email already exists.");
+            return;
+        }
+    }
+
+    // Check if email exists in predefined accounts
+    for (const user in accounts) {
+        if (accounts[user].email === email) {
+            showError("An account with this email already exists.");
+            return;
+        }
+    }
+
+    // Show loading spinner
     document.getElementById('register-spinner').style.display = 'block';
 
-    fetch('db.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        // Get the response as text first
-        return response.text();
-    })
-    .then(data => {
+    // Simulate server delay
+    setTimeout(() => {
+        // Add user to registered users
+        registeredUsers[username] = {
+            email: email,
+            password: password,
+            role: role,
+            type: role === 'faculty' ? 'reviewer' : 'user'
+        };
+
+        // Save to sessionStorage (persists for the browser session)
+        sessionStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+
         document.getElementById('register-spinner').style.display = 'none';
-        
-        console.log('Server response:', data); // Debug log
-        
-        // Clean up the response by removing any HTML tags or extra whitespace
-        const cleanResponse = data.replace(/<[^>]*>/g, '').trim().toLowerCase();
-        
-        // Check for success indicators in the response
-        if (cleanResponse.includes('success') || 
-            cleanResponse.includes('registered') || 
-            cleanResponse.includes('created') ||
-            cleanResponse.includes('account has been') ||
-            data.trim() === '' || // Sometimes empty response means success
-            response.ok) { // HTTP status is OK
-            
-            showRegistrationSuccess();
-        } else if (cleanResponse.includes('exists') || 
-                   cleanResponse.includes('already') ||
-                   cleanResponse.includes('duplicate') ||
-                   cleanResponse.includes('taken')) {
-            showError("An account with this email or username already exists.");
-        } else if (cleanResponse.includes('error') || 
-                   cleanResponse.includes('failed') ||
-                   cleanResponse.includes('invalid')) {
-            showError("Registration failed. Please check your information and try again.");
-        } else {
-            // If we can't determine the status from the message, 
-            // but the HTTP request was successful, assume it worked
-            console.log('Unclear response, assuming success:', data);
-            showRegistrationSuccess();
-        }
-    })
-    .catch(error => {
-        document.getElementById('register-spinner').style.display = 'none';
-        console.error('Registration error:', error);
-        showError("An error occurred during registration. Please try again.");
-    });
+        showRegistrationSuccess();
+    }, 1000); // 1 second delay to simulate server processing
 }
 
 function login() {
@@ -194,111 +178,82 @@ function login() {
         return;
     }
 
-    const formData = new FormData();
-    formData.append('username', usernameOrEmail);
-    formData.append('password', password);
-    formData.append('challenge_answer', challengeAnswer);
-
+    // Show loading spinner
     document.getElementById('login-spinner').style.display = 'block';
 
-    fetch('login.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        return response.text().then(text => {
-            try {
-                return JSON.parse(text);
-            } catch (e) {
-                console.error("Failed to parse response:", text);
-                return { success: false, message: "Server response error" };
-            }
-        });
-    })
-    .then(data => {
+    // Simulate server delay
+    setTimeout(() => {
         document.getElementById('login-spinner').style.display = 'none';
         
-        if (data.success) {
-            // Store user data in localStorage
-            localStorage.setItem('userData', JSON.stringify({
-                username: data.user.username,
-                role: data.user.role,
-                type: data.user.type
-            }));
-
-            // Show success message
-            document.getElementById('success-message').textContent = data.message;
-            openModal('success-modal');
-            
-            // Set current user info
-            currentUserType = data.user.type;
-            currentUsername = data.user.username;
+        // Try to find user in predefined accounts first
+        let foundAccount = null;
+        let foundUsername = null;
+        
+        if (accounts[usernameOrEmail]) {
+            foundAccount = accounts[usernameOrEmail];
+            foundUsername = usernameOrEmail;
         } else {
-            // Check if account is locked
-            if (data.message && data.message.includes("account is locked")) {
-                // Display the lock message directly
-                showError(data.message);
+            for (const username in accounts) {
+                if (accounts[username].email === usernameOrEmail) {
+                    foundAccount = accounts[username];
+                    foundUsername = username;
+                    break;
+                }
+            }
+        }
+
+        // If not found in predefined accounts, check registered users
+        if (!foundAccount) {
+            if (registeredUsers[usernameOrEmail]) {
+                foundAccount = registeredUsers[usernameOrEmail];
+                foundUsername = usernameOrEmail;
             } else {
-                // Try fallback login for test accounts
-                tryFallbackLogin(usernameOrEmail, password);
+                for (const username in registeredUsers) {
+                    if (registeredUsers[username].email === usernameOrEmail) {
+                        foundAccount = registeredUsers[username];
+                        foundUsername = username;
+                        break;
+                    }
+                }
             }
         }
-    })
-    .catch(error => {
-        document.getElementById('login-spinner').style.display = 'none';
-        tryFallbackLogin(usernameOrEmail, password);
-    });
-}
 
-function tryFallbackLogin(usernameOrEmail, password) {
-    let foundAccount = null;
-    let foundUsername = null;
-    
-    if (accounts[usernameOrEmail]) {
-        foundAccount = accounts[usernameOrEmail];
-        foundUsername = usernameOrEmail;
-    } else {
-        for (const username in accounts) {
-            if (accounts[username].email === usernameOrEmail) {
-                foundAccount = accounts[username];
-                foundUsername = username;
+        if (!foundAccount) {
+            showError("Account not found. Please check your credentials or register a new account.");
+            return;
+        }
+
+        if (foundAccount.password !== password) {
+            showError("Incorrect password. Please try again.");
+            return;
+        }
+
+        // Successful login
+        currentUserType = foundAccount.type;
+        currentUsername = foundUsername;
+        
+        let successMessage = "";
+        switch(currentUserType) {
+            case "admin":
+                successMessage = "Admin login successful. Redirecting to admin dashboard...";
                 break;
-            }
+            case "reviewer":
+                successMessage = "Reviewer login successful. Redirecting to reviewer dashboard...";
+                break;
+            default:
+                successMessage = "Login successful. Redirecting to dashboard...";
         }
-    }
-
-    if (!foundAccount) {
-        showError("Account not found.");
-        return;
-    }
-
-    if (foundAccount.password !== password) {
-        showError("Incorrect password.");
-        return;
-    }
-
-    currentUserType = foundAccount.type;
-    currentUsername = foundUsername;
-    
-    let successMessage = "";
-    switch(currentUserType) {
-        case "admin":
-            successMessage = "Admin login successful. Redirecting to admin dashboard...";
-            break;
-        case "reviewer":
-            successMessage = "Reviewer login successful. Redirecting to reviewer dashboard...";
-            break;
-        default:
-            successMessage = "Login successful. Redirecting to dashboard...";
-    }
-    
-    document.getElementById('success-message').textContent = successMessage;
-    openModal('success-modal');
-    
-    localStorage.setItem('userData', JSON.stringify({
-        username: foundUsername,
-        type: foundAccount.type
-    }));
+        
+        document.getElementById('success-message').textContent = successMessage;
+        openModal('success-modal');
+        
+        // Store user data in sessionStorage instead of localStorage
+        sessionStorage.setItem('userData', JSON.stringify({
+            username: foundUsername,
+            type: foundAccount.type,
+            role: foundAccount.role || 'user'
+        }));
+    }, 1000); // 1 second delay to simulate server processing
 }
 
 function togglePassword(inputId) {
@@ -395,10 +350,14 @@ function setRandomChallenges() {
     
     // Update challenge text and answers
     const loginLabel = document.querySelector('label[for="login-challenge"]');
-    loginLabel.textContent = `Security Question: What is ${num1Login} + ${num2Login}?`;
+    if (loginLabel) {
+        loginLabel.textContent = `Security Question: What is ${num1Login} + ${num2Login}?`;
+    }
     
     const registerLabel = document.querySelector('label[for="register-challenge"]');
-    registerLabel.textContent = `Security Question: What is ${num1Register} + ${num2Register}?`;
+    if (registerLabel) {
+        registerLabel.textContent = `Security Question: What is ${num1Register} + ${num2Register}?`;
+    }
     
     // Update the answers in the CHALLENGES object
     CHALLENGES.login = loginSum;
