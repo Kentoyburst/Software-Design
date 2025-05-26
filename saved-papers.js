@@ -63,16 +63,38 @@ function setupButtonListeners() {
         });
     });
 
-    // View abstract button listeners
+    // View abstract button listeners - Updated to navigate to specific HTML pages
     document.querySelectorAll('.view-abstract-btn').forEach(button => {
         button.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
-            showAbstractModal(savedPapers[index]);
+            const paper = savedPapers[index];
+            navigateToAbstractPage(paper.title);
         });
     });
 }
 
-// Function to show abstract modal
+// Function to navigate to specific abstract pages based on thesis title
+function navigateToAbstractPage(title) {
+    // Navigate to specific HTML pages based on thesis title (same as browse-thesis.js)
+    if (title === "Solar Powered Automated Waste Restraining Device for Sewages") {
+        window.location.href = "no1.html";
+    } else if (title === "ROBUMBERO: SMART FIREFIGHTING ROBOT") {
+        window.location.href = "no2.html";
+    } else if (title === "E-CHEQUER: A SMART EXAM -CHECKING MACHINE USING IMAGE PROCESSING TECHNIQUE") {
+        window.location.href = "no3.html";
+    } else if (title === "DESIGN AND DEVELOPMENT OF AUTOMATED SOLDERING ROBOT MACHINE") {
+        window.location.href = "no4.html";
+    } else if (title === "Automated LCD Masked-Based Lithography PCB Layout Etching System") {
+        window.location.href = "no5.html";
+    } else if (title === "AUTOMATIC TURN SIGNAL FOR MOTOR VEHICLES USING ROAD NAVIGATION APPLICATION") {
+        window.location.href = "no6.html";
+    } else {
+        // Fallback to modal for any other papers
+        showAbstractModal(savedPapers.find(paper => paper.title === title));
+    }
+}
+
+// Function to show abstract modal (kept as fallback)
 function showAbstractModal(paper) {
     // Populate modal content
     modalTitle.textContent = paper.title;
